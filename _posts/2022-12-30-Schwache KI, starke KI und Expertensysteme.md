@@ -11,9 +11,6 @@ In diesem Artikel möchte ich darauf eingehen, was künstliche Intelligenz (KI) 
 
 <figure>
     <img src="https://miro.medium.com/v2/resize:fit:720/format:webp/1*95fM0HUIxRPrJQRJfpCxdQ.png">
-    <figcaption>
-      Eine starke KI, Data. <a href="https://www.startrek.com/en-un/database">Bildquelle</a>
-    </figcaption>
 </figure>
 
 
