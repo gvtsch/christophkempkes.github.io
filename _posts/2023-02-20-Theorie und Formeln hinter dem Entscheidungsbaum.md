@@ -25,7 +25,7 @@ Eines der wichtigsten Konzepte bei Entscheidungsbäumen ist die Informationsgewi
 
 Der Entropiewert misst die Unordnung oder Heterogenität einer Gruppe von Beobachtungen. Eine höhere Entropie bedeutet eine höhere Unordnung und eine geringere Vorhersagegenauigkeit. Der Entropiewert wird berechnet, indem man die Wahrscheinlichkeit jeder Klasse in der Gruppe und diese Werte logarithmisch berechnet und summiert.
 
-Die Entropie einer diskreten Zufallsvariable X mit möglichen Ausprägungen ${x_1, x_2, …, x_n}$ und Wahrscheinlichkeiten ${p_1, p_2, …, p_n}$ ist definiert als:
+Die Entropie einer diskreten Zufallsvariable $X$ mit möglichen Ausprägungen ${x_1, x_2, …, x_n}$ und Wahrscheinlichkeiten ${p_1, p_2, …, p_n}$ ist definiert als:
 
 $$ H(X) = - \sum_{i=1}^N P_i \cdot log_2(P_i)$$
 
@@ -42,13 +42,13 @@ wobei $S$ die Menge aller Beispiele ist, die entschieden werden sollen, $t$ die 
 Mit anderen Worten misst der Information Gain, wie viel Entropie verringert wird, wenn eine bestimmte Entscheidung getroffen wird, im Vergleich zur Entropie der ursprünglichen Menge von Beispielen. Ein hoher Information Gain bedeutet, dass eine Entscheidung nützlicher ist, da sie mehr Entropie verringert und damit mehr Information bereitstellt.
 
 ## Gini-Impurität
-Die Gini-Impurität (Gini-Impurity) ist ein Maß für die Unreinheit einer Menge von Daten. Sie wird in der Entscheidungsbaumklassifikation verwendet, um die Güte von Teilungen (Splits) in den Daten zu bewerten. Die Gini-Impurity misst, wie oft ein zufällig ausgewähltes Element in der Menge falsch klassifiziert würde, wenn es zufällig entsprechend der Verteilung der Klassen in der Menge klassifiziert würde. Ein Wert von 0 bedeutet, dass die Menge vollständig rein ist (alle Elemente haben die gleiche Klasse), während ein Wert von 1 bedeutet, dass die Menge vollständig unrein ist (die Elemente sind gleichmäßig auf die Klassen verteilt). Die Gini-Impurity kann wie folgt berechnet werden.
+Die Gini-Impurität (Gini-Impurity) ist ein Maß für die Unreinheit einer Menge von Daten. Sie wird in der Entscheidungsbaumklassifikation verwendet, um die Güte von Teilungen (Splits) in den Daten zu bewerten. Die Gini-Impurity misst, wie oft ein zufällig ausgewähltes Element in der Menge falsch klassifiziert würde, wenn es zufällig entsprechend der Verteilung der Klassen in der Menge klassifiziert würde. Ein Wert von $0$ bedeutet, dass die Menge vollständig rein ist (alle Elemente haben die gleiche Klasse), während ein Wert von $1$ bedeutet, dass die Menge vollständig unrein ist (die Elemente sind gleichmäßig auf die Klassen verteilt). Die Gini-Impurity kann wie folgt berechnet werden.
 
 $$ Gini = 1 - \sum_{i=1}^n (p_i)^2 $$
 
-n ist die Anzahl der Klassen und p_i die relative Häufigkeit von Instanzen der Klasse i in der Teilung.
+$n$ ist die Anzahl der Klassen und $p_i$ die relative Häufigkeit von Instanzen der Klasse $i$ in der Teilung.
 
-Bei der Berechnung der Gini-Impurity wird angenommen, dass jede Teilung mindestens eine Instanz jeder Klasse enthält. Wenn eine Teilung keine Instanzen einer bestimmten Klasse enthält, ist die Gini-Impurity 0, was bedeutet, dass die Teilung eine perfekte Klassenseparation bietet.
+Bei der Berechnung der Gini-Impurity wird angenommen, dass jede Teilung mindestens eine Instanz jeder Klasse enthält. Wenn eine Teilung keine Instanzen einer bestimmten Klasse enthält, ist die Gini-Impurity $0$, was bedeutet, dass die Teilung eine perfekte Klassenseparation bietet.
 Die Wahl zwischen der Verwendung von Information Gain oder Gini-Impurity hängt oft von den spezifischen Anforderungen und Vorlieben des Benutzers ab. Information Gain ist eine bekannte Messgröße und bietet eine klare mathematische Basis, aber Gini-Impurity kann schneller berechnet werden und ist in manchen Fällen einfacher zu interpretieren.
 Zusammenfassend berechnet die Gini-Impurity die Unreinheit einer bestimmten Teilung in einem Entscheidungsbaum und ist ein wichtiger Indikator für die Vorhersagegenauigkeit. Je niedriger die Gini-Impurität, desto besser ist die Klassenseparation und desto höher ist die Vorhersagegenauigkeit.
 
@@ -56,11 +56,11 @@ Zusammenfassend berechnet die Gini-Impurity die Unreinheit einer bestimmten Teil
 Ein weiteres wichtiges Konzept oder Problem bei Entscheidungsbäumen ist Überanpassung (Overfitting). Dies tritt auf, wenn ein Modell zu komplex ist und zu sehr auf die Trainingsdaten angepasst wird, anstatt allgemeingültige Vorhersagen zu treffen. Overfitting kann zu einer schlechten Vorhersagegenauigkeit auf neuen, ungesehenen Daten führen.
 
 Es gibt verschiedene Techniken, die Overfitting bei Entscheidungsbäumen verhindern können:
-1. Beschneidung (Pruning): Bei dieser Technik wird der Baum nach dem Erstellen beschnitten, um unnötig komplexe Strukturen zu entfernen. Es gibt zwei Hauptarten des Beschneidens: Reduced Error Pruning und Cost Complexity Pruning.
-2. Minimierung der Blätterzahl: Eine andere Möglichkeit, Overfitting zu vermeiden, besteht darin, die Anzahl der Blätter zu minimieren. Dies kann durch Erhöhung des Schwellenwerts oder durch Anwendung von Regeln erreicht werden, um Blätter zusammenzufassen.
-3. Verwendung von Ensembles: Eine Kombination mehrerer Entscheidungsbäume, die auf unterschiedlichen Trainingsdaten trainiert wurden, kann die Vorhersagegenauigkeit verbessern und Overfitting verringern. Die bekanntesten Verfahren sind Bagging und Boosting.
-4. Verwendung von Regulierungstermen: Es ist möglich, Regulierungsterme wie L1 und L2 zu verwenden, um den Einfluss von bestimmten Variablen auf den Entscheidungsprozess zu verringern und somit Overfitting zu verhindern.
-5. Datenaugmentation: Ein weiterer Ansatz besteht darin, die Daten zu erweitern, indem künstlich neue Datenpunkte erzeugt werden, die den bereits vorhandenen ähneln. Dies kann helfen, die Varianz zu verringern und Overfitting zu reduzieren.
+1. **Beschneidung (Pruning)**: Bei dieser Technik wird der Baum nach dem Erstellen beschnitten, um unnötig komplexe Strukturen zu entfernen. Es gibt zwei Hauptarten des Beschneidens: Reduced Error Pruning und Cost Complexity Pruning.
+2. **Minimierung der Blätterzahl**: Eine andere Möglichkeit, Overfitting zu vermeiden, besteht darin, die Anzahl der Blätter zu minimieren. Dies kann durch Erhöhung des Schwellenwerts oder durch Anwendung von Regeln erreicht werden, um Blätter zusammenzufassen.
+3. **Verwendung von Ensembles**: Eine Kombination mehrerer Entscheidungsbäume, die auf unterschiedlichen Trainingsdaten trainiert wurden, kann die Vorhersagegenauigkeit verbessern und Overfitting verringern. Die bekanntesten Verfahren sind Bagging und Boosting.
+4. **Verwendung von Regulierungstermen**: Es ist möglich, Regulierungsterme wie $L1$ und $L2$ zu verwenden, um den Einfluss von bestimmten Variablen auf den Entscheidungsprozess zu verringern und somit Overfitting zu verhindern.
+5. **Datenaugmentation**: Ein weiterer Ansatz besteht darin, die Daten zu erweitern, indem künstlich neue Datenpunkte erzeugt werden, die den bereits vorhandenen ähneln. Dies kann helfen, die Varianz zu verringern und Overfitting zu reduzieren.
 
 Es ist wichtig zu beachten, dass es keine einheitliche Methode gibt, um Overfitting zu vermeiden, und dass die Wahl der Methode von der spezifischen Problemstellung abhängt. Sollte dich dieses Thema stärker interessieren, lass es mich wissen und ich werde es aufbereiten.
 
