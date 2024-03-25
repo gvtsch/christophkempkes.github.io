@@ -37,7 +37,7 @@ Der Information Gain, der von einer Entscheidung A abhängt und den Unterschied 
 
 $$IG(A) = H(S) - \sum p(t) \cdot H(t) $$
 
-wobei S die Menge aller Beispiele ist, die entschieden werden sollen, t die Menge der Beispiele, bei denen die Entscheidung A getroffen wurde, p(t) die Wahrscheinlichkeit, dass ein Beispiel in t ist, und H(t) die Entropie von t ist.
+wobei $S$ die Menge aller Beispiele ist, die entschieden werden sollen, $t$ die Menge der Beispiele, bei denen die Entscheidung $A$ getroffen wurde, $p(t)$ die Wahrscheinlichkeit, dass ein Beispiel in $t$ ist, und $H(t)$ die Entropie von $t$ ist.
 
 Mit anderen Worten misst der Information Gain, wie viel Entropie verringert wird, wenn eine bestimmte Entscheidung getroffen wird, im Vergleich zur Entropie der ursprünglichen Menge von Beispielen. Ein hoher Information Gain bedeutet, dass eine Entscheidung nützlicher ist, da sie mehr Entropie verringert und damit mehr Information bereitstellt.
 
