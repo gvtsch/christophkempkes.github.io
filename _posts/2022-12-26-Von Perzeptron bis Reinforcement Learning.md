@@ -1,9 +1,9 @@
 ---
-title: Mein erster Post
-date: 2024-03-24 13:13:00 +/-TTTT
-categories: [ALLGEMEINES]
-tags: [allgemeines]     # TAG names should always be lowercase
-toc: false
+title: Von Perzeptron bis Reinforcement Learning
+date: 2022-12-26 13:13:00 +/-TTTT
+categories: [MACHINE LEARNING]
+tags: [ML, DL, AI]     # TAG names should always be lowercase
+toc: true
 ---
 
 # Von Perzeptron bis Reinforcement Learning
