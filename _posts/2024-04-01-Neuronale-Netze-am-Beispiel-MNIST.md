@@ -1,12 +1,13 @@
 ---
-title: Wie kann man einem Computer beibringen, eine Ziffer zu erkennen? Oder Schriftzeichen? Handynummern? Schilder?
+title: Wie kann man einem Computer beibringen, eine Ziffer zu erkennen? 
 date: 2024-04-01 11:13:00 +/-TTTT
 categories: [Maschinelles Lernen]
 tags: [ML, DL, AI]     # TAG names should always be lowercase
 toc: true
+math: true
 ---
 
-# Wie kann man einem Computer beibringen, eine Ziffer zu erkennen? Oder Schriftzeichen? Handynummern? Schilder?
+# Wie kann man einem Computer beibringen, eine Ziffer zu erkennen?
 
 In diesem Beitrag versuche ich, euch zu zeigen oder näher zu bringen, wie ein künstliches Neuronales Netz funktioniert. Weil das Thema sehr umfangreich ist, habe ich einen roten Faden einbauen wollen. An Hand eines Beispiels, dem roten Faden, hangel ich mich durch das Thema.
 
