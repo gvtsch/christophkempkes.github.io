@@ -134,5 +134,6 @@ Diese Zahlenwerte sind jene, die in das noch zu beschreibende Input-Layer einges
 
 Während das obige Bild des MNIST Datensatzes eine Feature Map hat, die Graustufenwerte, sieht das bei farbigen Bildern anders aus. Farbige Bilder haben für jeden Farbkanal eine eigene Feature Map: Rot, Grün, Blau. Gebräuchlich sind 8 Bit pro Kanal, was in Summe $16.777.216$ mögliche Farben ergibt. Bei der Erkennung von Ziffern können wir natürlich auf die Farbkanäle verzichten. Es genügen Grauwertstufen.
 
-  <img src="https://miro.medium.com/v2/resize:fit:720/format:webp/0*xGj2NQwOpsLpx1Ji.png", width="600">
-  <figcaption>Die drei Feature Maps eines RGB-Bildes.</figcaption>
+
+![Die drei Feature Maps eines RGB-Bildes.](https://miro.medium.com/v2/resize:fit:720/format:webp/0*xGj2NQwOpsLpx1Ji.png)
+*Die drei Feature Maps eines RGB-Bildes.*
