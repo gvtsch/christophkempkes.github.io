@@ -1,5 +1,5 @@
 ---
-title: Theorie und Formeln hinter dem Entscheidungsbaum
+title: Neuronale Netze am Beispiel MNIST
 date: 2023-02-20 13:00:00 +/-TTTT
 categories: [Maschinelles Lernen]
 tags: [ML, DL, AI]     # TAG names should always be lowercase
