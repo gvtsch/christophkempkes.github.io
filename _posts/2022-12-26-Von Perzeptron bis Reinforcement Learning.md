@@ -2,7 +2,7 @@
 title: Von Perzeptron bis Reinforcement Learning
 date: 2022-12-26 13:13:00 +/-TTTT
 categories: [MACHINE LEARNING]
-tags: [ML, DL, AI]     # TAG names should always be lowercase
+tags: [ML, DL, AI, Medium]     # TAG names should always be lowercase
 toc: true
 ---
 

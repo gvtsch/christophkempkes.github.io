@@ -1,8 +1,8 @@
 ---
 title: Schwache KI, starke KI und Expertensysteme
 date: 2022-12-30 13:00:00 +/-TTTT
-categories: [Maschinelles Lernen]
-tags: [ML, DL, AI]     # TAG names should always be lowercase
+categories: [MACHINE LEARNING]
+tags: [ML, DL, AI, Medium]     # TAG names should always be lowercase
 toc: true
 ---
 
