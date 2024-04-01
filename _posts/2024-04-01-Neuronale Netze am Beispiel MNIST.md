@@ -124,3 +124,17 @@ print(f"Label des zufällig gewählten Bildes: {ground_truth}")
 
 
 ![png](2024-04-01-Neuronale Netze am Beispiel MNIST_16_1.png)
+
+Das zufällige Bild des Datensatzes hat die erwähnten $28x28$ Pixel und ist in Graustufen abgelegt. Als Bild ist es links dargestellt.
+Die einzelnen Werte der Graustufen, also die Zahlen die ein jedes Pixel repräsentieren, sind in der rechten Ausgabe dargestellt. Es handelt sich dabei ursprünglich um Werte zwischen $0$ und $255$, also $8$ Bit je Pixel.  Der Wert gibt an, wie hell dieses Pixel ist.
+
+Diese Zahlenwerte sind jene, die in das noch zu beschreibende Input-Layer eingespielt werden.
+
+#### **Feature Maps**
+
+Während das obige Bild des MNIST Datensatzes eine Feature Map hat, die Graustufenwerte, sieht das bei farbigen Bildern anders aus. Farbige Bilder haben für jeden Farbkanal eine eigene Feature Map: Rot, Grün, Blau. Gebräuchlich sind 8 Bit pro Kanal, was in Summe $16.777.216$ mögliche Farben ergibt. Bei der Erkennung von Ziffern können wir natürlich auf die Farbkanäle verzichten. Es genügen Grauwertstufen.
+
+<figure>
+  <img src="https://miro.medium.com/v2/resize:fit:720/format:webp/0*xGj2NQwOpsLpx1Ji.png", width="600">
+  <figcaption>Die drei Feature Maps eines RGB-Bildes.</figcaption>
+</figure>
