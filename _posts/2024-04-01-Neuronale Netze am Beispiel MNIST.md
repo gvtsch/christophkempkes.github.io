@@ -708,7 +708,7 @@ Aktivierungsfunktion und Ableitung sind hier dargestellt.
   </figure>
 
   
-![Sigmoid-Aktivierungsfunktion mit Ableitung.](https://miro.medium.com/v2/resize:fit:640/format:webp/1*7XQVdpnz_QctgMkY1wivJg.png){: width="500"}
+![Sigmoid-Aktivierungsfunktion mit Ableitung.](https://miro.medium.com/v2/resize:fit:640/format:webp/1*7XQVdpnz_QctgMkY1wivJg.png)
 *Sigmoid-Aktivierungsfunktion mit Ableitung.*
 
 ### **Rectified Linear Unit (ReLU)**
