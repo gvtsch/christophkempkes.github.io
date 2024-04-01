@@ -73,7 +73,7 @@ plt.show()
 
 
     
-![<img src="image.png" width="250"/>](/assets/images/2024-04-01-Neuronale-Netze-am-Beispiel-MNIST_files/2024-04-01-Neuronale-Netze-am-Beispiel-MNIST_12_0.png)
+![](/assets/images/2024-04-01-Neuronale-Netze-am-Beispiel-MNIST_files/2024-04-01-Neuronale-Netze-am-Beispiel-MNIST_12_0.png)
     
 
 
@@ -122,7 +122,7 @@ print(f"Label des zufällig gewählten Bildes: {ground_truth}")
 
 
     
-![<img src="image.png" width="250"/>](/assets/images/2024-04-01-Neuronale-Netze-am-Beispiel-MNIST_files/2024-04-01-Neuronale-Netze-am-Beispiel-MNIST_16_1.png)
+![](/assets/images/2024-04-01-Neuronale-Netze-am-Beispiel-MNIST_files/2024-04-01-Neuronale-Netze-am-Beispiel-MNIST_16_1.png)
     
 
 
@@ -135,7 +135,7 @@ Diese Zahlenwerte sind jene, die in das noch zu beschreibende Input-Layer einges
 
 Während das obige Bild des MNIST Datensatzes eine Feature Map hat, die Graustufenwerte, sieht das bei farbigen Bildern anders aus. Farbige Bilder haben für jeden Farbkanal eine eigene Feature Map: Rot, Grün, Blau. Gebräuchlich sind 8 Bit pro Kanal, was in Summe $16.777.216$ mögliche Farben ergibt. Bei der Erkennung von Ziffern können wir natürlich auf die Farbkanäle verzichten. Es genügen Grauwertstufen.
 
-![<img src="image.png" width="250"/>](https://miro.medium.com/v2/resize:fit:720/format:webp/0*xGj2NQwOpsLpx1Ji.png)
+![](https://miro.medium.com/v2/resize:fit:720/format:webp/0*xGj2NQwOpsLpx1Ji.png)
 *Die drei Feature Maps eines RGB-Bildes.*
 
 ### **Das Neuronale Netz**
@@ -148,7 +148,7 @@ Die Eingänge oder Eingangs-Ebene bezeichnen wir als Input-Layer, die Ausgänge 
 Die Eingangsmatrix von $28 * 28$ Pixeln transformieren wir zur einfacheren Handhabung zu einem Tensor der Größe $784$. Wir haben dann $784$ in Reihe angeordnete Pixel bzw. Eingänge, die ihrerseits mit jedem Neuron im folgenden Layer verbunden sind. Jedes einzelne dieser Neuronen ist widerum mit jedem Neuron des folgenden Layers verbunden, bis hin zum Output-Layer. Bei dieser Architektur handelt es sich um das sogenannte **Multilayer Perceptron**.
 Es gibt auch andere Architekturen, bei denen das so nicht der Fall ist, aber dazu später mehr.
 
-![<img src="image.png" width="250"/>](https://tikz.net/wp-content/uploads/2021/12/neural_networks-002.png)
+![](https://tikz.net/wp-content/uploads/2021/12/neural_networks-002.png)
 *Feedforward Netzwerk bzw. Multilayer Perzeptron. [Bildquelle](https://tikz.net/wp-content/uploads/2021/12/neural_networks-002.png)*
 
 Der Begriff **Neuron** ist nun so häufig gefallen, dass wir es genauer betrachten sollten.
