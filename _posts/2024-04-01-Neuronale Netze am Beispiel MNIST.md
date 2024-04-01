@@ -4,7 +4,7 @@ date: 2023-04-01 13:00:00 +/-TTTT
 categories: [Maschinelles Lernen]
 tags: [ML, DL, AI]     # TAG names should always be lowercase
 toc: true
-img_path: /images/2024-04-01-Neuronale Netze am Beispiel MNIST_files/
+img_path: /assets/images/2024-04-01-Neuronale Netze am Beispiel MNIST_files/
 ---
 
 
@@ -76,4 +76,4 @@ plt.show()
 
 
     
-![png](/assets/images/2024-04-01-Neuronale Netze am Beispiel MNIST_files/2024-04-01-Neuronale Netze am Beispiel MNIST_12_0.png)
+![png](2024-04-01-Neuronale Netze am Beispiel MNIST_12_0.png)
