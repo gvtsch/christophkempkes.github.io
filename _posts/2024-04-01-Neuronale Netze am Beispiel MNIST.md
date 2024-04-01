@@ -4,7 +4,6 @@ date: 2024-04-01 11:13:00 +/-TTTT
 categories: [Maschinelles Lernen]
 tags: [ML, DL, AI]     # TAG names should always be lowercase
 toc: true
-math: true
 ---
 
 ## Wie kann man einem Computer beibringen, eine Ziffer zu erkennen? 
