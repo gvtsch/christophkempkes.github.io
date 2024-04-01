@@ -7,7 +7,8 @@ toc: true
 img_path: /assets/images/2024-04-01-Neuronale Netze am Beispiel MNIST_files/
 ---
 
-
+# Wie kann man einem Computer beibringen, eine Ziffer zu erkennen? Oder Schriftzeichen? Handynummern? Schilder?
+## Oder: Wie funktionieren Neuronale Netze? 
 
 In diesem Beitrag versuche ich, euch zu zeigen oder näher zu bringen, wie ein künstliches Neuronales Netz funktioniert. Weil das Thema sehr umfangreich ist, habe ich einen roten Faden einbauen wollen. An Hand eines Beispiels, dem roten Faden, hangel ich mich durch das Thema.
 
@@ -77,3 +78,49 @@ plt.show()
 
     
 ![png](2024-04-01-Neuronale Netze am Beispiel MNIST_12_0.png)
+
+#### **Überblick über den MNIST Datensatz**
+
+Der MNIST-Datensatz besteht aus insgesamt **70.000** Bildern von handgeschriebenen Ziffern. Davon sind **60.000** Bilder für das Training und **10.000** Bilder für das Testen vorgesehen. Die Bilder sind **schwarz-weiß** und haben eine Größe von **28x28** Pixeln.
+
+Der Datensatz wurde in den 1990er Jahren von Yann LeCun, Corinna Cortes und Christopher J.C. Burges am Courant Institute of Mathematical Sciences der New York University erstellt. Er wurde entwickelt, um Algorithmen zur Erkennung von handgeschriebenen Ziffern zu trainieren und zu testen.
+
+Die handgeschriebenen Ziffern im Datensatz stammen von einer Vielzahl von Personen und wurden auf Standardformularen geschrieben. Die Ziffern sind in einer zufälligen Reihenfolge angeordnet und besitzen keine besonderen Merkmale oder Muster, die die Erkennung beeinflussen könnten.
+
+Der Datensatz ist ein Standardbenchmark-Datensatz und wird häufig verwendet, um die Leistungsfähigkeit von Algorithmen im Bereich des maschinellen Lernens zu vergleichen. Beim MNIST-Datensatz handelt es sich um ein einfaches und leicht verfügbares Datenset, weshalb es sehr häufig in Tutorials, Schulungen oder ähnlichem genutzt wird. Das **Hallo Welt!** des maschinellen Lernens eben.
+
+Als erstes schauen wir uns ein einzelnes Bild genauer an. Dazu wählen wir eines zufällig aus und plotten es. Zum einen das Bild als solches, zum anderen wie es im Speicher abgelegt ist und wie Computer es nutzen, als Zahlen.
+
+
+```python
+# Show a random image
+plt.rcParams.update({'font.size':8})
+
+rnd = random.randint(0, random.randint(0, len(x_train)))
+img = x_train[rnd]
+ground_truth = y_train[rnd]
+
+plt.figure(figsize = (20, 10))
+plt.subplot(1,2,1)
+plt.imshow(img, cmap="gray")
+
+fig = plt.subplot(1,2,2)
+fig.imshow(img, cmap="gray")
+width, heigth = img.shape
+thrs = img.max()/2.5
+for x in range(width):
+  for y in range(heigth):
+    val = round(img[x][y], 2) if img[x][y] != 0 else 0
+    ax.annotate(str(val), xy = (y, x),
+                horizontalalignment = "center",
+                verticalalignment = "center",
+                color = "white" if img[x][y] < thrs else "black")
+
+print(f"Label des zufällig gewählten Bildes: {ground_truth}")
+```
+
+    Label des zufällig gewählten Bildes: 4
+    
+
+
+![png](2024-04-01-Neuronale Netze am Beispiel MNIST_16_1.png)
