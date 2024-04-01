@@ -1,6 +1,6 @@
 ---
 title: Neuronale Netze am Beispiel MNIST
-date: 2023-04-01 13:00:00 +/-TTTT
+date: 2024-04-01 13:00:00 +/-TTTT
 categories: [Maschinelles Lernen]
 tags: [ML, DL, AI]     # TAG names should always be lowercase
 toc: true
