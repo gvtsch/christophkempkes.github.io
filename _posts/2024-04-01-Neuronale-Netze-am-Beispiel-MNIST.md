@@ -594,15 +594,17 @@ In einem anderen, folgenden Beitrag soll es dann um die Optimierer gehen.
 
 Vorwärtspropagation ist der Prozess, bei dem Eingabedaten durch das neuronale Netzwerk fließen, um eine Vorhersage zu generieren. In jeder Schicht werden die Eingaben mit den Gewichten multipliziert und die Biasse addiert. Die resultierende Summe wird dann durch eine Aktivierungsfunktion wie die Sigmoid-Funktion oder die ReLU-Funktion geleitet, um die Aktivierungen der Neuronen zu berechnen. Dieser Prozess wird für jede Schicht wiederholt, bis die Ausgabe erreicht wird. Mathematisch ausgedrückt:
 
-
+$$
 \begin{equation}
 z^{(l)} = W^{(l)} \cdot a^{(l-1)} + b^{(l)} 
 \end{equation}
+$$
 
+$$
 \begin{equation}
 a^{(l)} = f(z^{(l)})
 \end{equation}
-
+$$
 
 Hier ist $z^{(l)}$ die gewichtete Summe der Eingaben in Schicht $l$, $W^{(l)}$ sind die Gewichte, $a^{(l-1)}$ sind die Aktivierungen der vorherigen Schicht, $b^{(l)}$ sind die Biasse und $f()$ ist die Aktivierungsfunktion.
 
@@ -612,27 +614,35 @@ In diesem Abschnitt möchte ein paar der gängigsten Kostenfunktionen nennen.
 
 * **Mean Squared Error (MSE)**: Die MSE-Funktion misst den durchschnittlichen quadratischen Fehler zwischen den tatsächlichen und erwarteten Ausgaben. Sie wird häufig bei Regressionsproblemen verwendet, bei denen das Ziel darin besteht, eine kontinuierliche Ausgabe zu schätzen. Die Funktion berechnet den quadratischen Unterschied zwischen jeder tatsächlichen und erwarteten Ausgabe und nimmt dann den Durchschnitt über alle Beispiele. Die MSE-Funktion ist empfindlich gegenüber Ausreißern, da der quadratische Fehler stark ansteigt, wenn der Unterschied zwischen den tatsächlichen und erwarteten Werten größer wird.
 
+$$
 \begin{equation}
   MSE = \dfrac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2
 \end{equation}
+$$
 
 * **Mean Absolute Error (MAE)**: Die MAE-Funktion misst den durchschnittlichen absoluten Fehler zwischen den tatsächlichen und erwarteten Ausgaben. Im Gegensatz zur MSE-Funktion, die den quadratischen Fehler berücksichtigt, betrachtet MAE den absoluten Fehler. Dies bedeutet, dass Ausreißer in den Daten weniger Einfluss auf die Kosten haben als bei der Verwendung von MSE. Die MAE-Funktion ist ebenfalls bei Regressionsproblemen nützlich und wird oft verwendet, wenn es wichtig ist, den durchschnittlichen Fehler in den tatsächlichen Einheiten der Ausgabe zu verstehen.
 
+$$
 \begin{equation}
   MAE = \dfrac{1}{n} \sum_{i=1}^{n} |y_i - \hat{y}_i|
 \end{equation}
+$$
 
 * **Binary Cross-Entropy**: Diese Funktion wird verwendet, wenn es sich um ein binäres Klassifikationsproblem handelt, bei dem die Ausgabe entweder 0 oder 1 ist. Die Funktion misst den Fehler zwischen den tatsächlichen und erwarteten Ausgaben, wobei die Ausgaben als Wahrscheinlichkeiten interpretiert werden. Sie verwendet die logarithmische Funktion, um den Fehler zu berechnen, wobei ein höherer Fehler auftritt, wenn die tatsächliche Ausgabe stark von der erwarteten Ausgabe abweicht. Die Binary Cross-Entropy-Funktion wird oft mit der Sigmoid-Aktivierungsfunktion in der Ausgabeschicht kombiniert.
 
+$$
 \begin{equation}
   Binary Cross Entropy = -\dfrac{1}{n} \sum_{i=1}^{n} [y_i \log(\hat{y}_i) + (1-y_i) \log(1-\hat{y}_i)]
 \end{equation}
+$$
 
 * **Categorical Cross-Entropy**: Diese Funktion wird verwendet, wenn es sich um ein mehrklassiges Klassifikationsproblem handelt, bei dem die Ausgabe in mehrere Klassen unterteilt ist. Ähnlich wie bei der binären Cross-Entropy-Funktion misst sie den Fehler zwischen den tatsächlichen und erwarteten Ausgaben, wobei die Ausgaben als Wahrscheinlichkeiten interpretiert werden. Die Categorical Cross-Entropy-Funktion verwendet die logarithmische Funktion, um den Fehler zu berechnen, wobei ein höherer Fehler auftritt, wenn die tatsächliche Ausgabe stark von der erwarteten Ausgabe abweicht. Sie wird oft mit der Softmax-Aktivierungsfunktion in der Ausgabeschicht kombiniert, um die Wahrscheinlichkeiten für jede Klasse zu normalisieren.
 
+$$
 \begin{equation}
   Categorical Cross Entropy = -\dfrac{1}{n} \sum_{i=1}^{n} \sum_{j=1}^{m} y_{ij} \log(\hat{y}_{ij})
 \end{equation}
+$$
 
 In den Gleichungen stehen $y$ und $\hat{y}_i$ für die tatsächlichen (ground truth) und die vorhergesagten Werte bzw. Ausgaben des Modells.
 
@@ -647,14 +657,16 @@ In allen Fällen ist $y$ der ground truth-Wert und $\hat{y}_i$​ ist die Modell
 
 Backward Propagation ist der Prozess, bei dem der Fehler durch das Netzwerk zurückgeleitet wird, um den Gradienten der Fehlerfunktion bezüglich der Gewichte und Biasse zu berechnen. Der Gradient wird mittels der Kettenregel der Ableitung berechnet und von der Ausgabeschicht zur Eingabeschicht propagiert. Mathematisch ausgedrückt:
 
+$$
 \begin{equation}
 \delta^{(L)} = \nabla_a E \odot f'(z^{(L)}) \\
 \end{equation}
-
+$$
+$$
 \begin{equation}
 \delta^{(l)} = ((W^{(l+1)})^T \cdot \delta^{(l+1)}) \odot f'(z^{(l)})
 \end{equation}
-
+$$
 
 Hierbei ist $\delta^{(L)}$ der Fehler in Schicht $l$, $\nabla_a E$ der Gradient der Fehlerfunktion bezüglich der Ausgaben, $f'(\cdot)$ ist die Ableitung der Aktivierungsfunktion, $z^{(L)}$ ist die gewichtete Summe der Eingaben in Schicht $l$ und $\odot$ steht für die elementweise Multiplikation.
 
@@ -694,9 +706,9 @@ Ein häufiger Use-Case für Sigmoid-Aktivierungsfunktionen findet sich bei binä
 
 Die Formel für die Sigmoid-Aktivierungsfunktion lautet:
 
-\begin{equation}
+$$
   f(x) = \dfrac{1}{1 + e^{-x}}
-\end{equation}
+$$
 
 Aktivierungsfunktion und Ableitung sind hier dargestellt.
 
@@ -713,9 +725,11 @@ Die ReLU-Aktivierungsfunktion ist eine gängige Wahl für Probleme des Deep Lear
 
 Die Formel für die ReLU-Aktivierungsfunktion lautet:
 
+$$
 \begin{equation}
   f(x) = max(0, x)
 \end{equation}
+$$
 
 Die ReLU-Funktion ihrerseits und ihre Ableitung lässt sich grafisch so darstellen:
 
@@ -731,9 +745,11 @@ Ein gängiger Use-Case für die Tangens hyperbolicus-Aktivierungsfunktion ist be
 
 Die Formel für die Tangens hyperbolicus-Aktivierungsfunktion lautet:
 
+$$
 \begin{equation}
   f(x) = tanh(x) 
 \end{equation}
+$$
 
 Die Tanges hyperbolicus-Funktion und ihre Ableitung in einer Grafik:
 
@@ -753,9 +769,11 @@ In diesem Abschnitt möchte ich kurz ein paar der üblichen Optimierer beschreib
 
 SGD ist einer der grundlegendsten Optimierer für das Training neuronaler Netze. Es basiert auf dem Gradientenabstiegsverfahren, bei dem die Gewichte nach jedem Mini-Batch der Trainingsdaten aktualisiert werden, um den Fehler zu minimieren. Die Gewichtsaktualisierung erfolgt entlang der Richtung des negativen Gradienten der Fehlerfunktion, wodurch das Modell Schritt für Schritt verbessert wird.
 
+$$
 \begin{equation}
     W^{(t+1)} = W^{(t)} - \alpha \cdot \nabla E(W^{(t)})
 \end{equation}
+$$
 
 mit $\alpha$ der Lernrate und $\nabla E(W^{(t)})$ dem Gradienten der Fehlerfunktion $E$ bezüglich der Gewichte $W$.
 
@@ -763,17 +781,23 @@ mit $\alpha$ der Lernrate und $\nabla E(W^{(t)})$ dem Gradienten der Fehlerfunkt
 
 Adam ist ein beliebter Optimierer, der die Vorteile von AdaGrad und RMSProp kombiniert. Es verwendet sowohl einen adaptiven Lernratenansatz als auch eine Momentenschätzung, um die Gewichte während des Trainings anzupassen. Adam passt die Lernrate für jedes Gewicht basierend auf vergangenen Gradienten und Quadraten der Gradienten an, wodurch er effektiv und robust ist und häufig in der Praxis verwendet wird.
 
-
+$$
 \begin{equation}
     m^{(t+1)} = \beta_1 \cdot m^{(t)} + (1 - \beta_1) \cdot \nabla E(W^{(t)})
 \end{equation}
+$$
+
+$$
 \begin{equation}
     v^{(t+1)} = \beta_2 \cdot v^{(t)} + (1 - \beta_2) \cdot (\nabla E(W^{(t)}))^2 
 \end{equation}
+$$
+
+$$
 \begin{equation}
   W^{(t+1)} = W^{(t)} - \dfrac{\alpha}{\sqrt{v^{(t+1)}+\epsilon}} \cdot m^{(t+2)}
 \end{equation}
-
+$$
 
 mit $m^{(t)}$ und $v^{(t)}$ den gleitenden Mittelwerten des Gradienten und seiner Quadrate, $\beta_1$ und $\beta_2$ den Exponentialfaktoren, $\alpha$ der Lernrate und $\epsilon$ einem Wert zum stabilisieren.
 
@@ -781,13 +805,17 @@ mit $m^{(t)}$ und $v^{(t)}$ den gleitenden Mittelwerten des Gradienten und seine
 
 RMSProp ist eine Variante des Gradientenabstiegsverfahrens, bei der die Lernrate für jedes Gewicht basierend auf dem durchschnittlichen quadratischen Gradienten für dieses Gewicht angepasst wird. Dies ermöglicht eine individuelle Anpassung der Lernrate für jedes Gewicht, was insbesondere bei ungleichmäßig verteilten Gradienten hilfreich ist. RMSProp hilft, die Konvergenzgeschwindigkeit zu verbessern und lokale Minima zu vermeiden.
 
+$$
 \begin{equation}
     v^{(t+1)} = \beta \cdot v^{(t)} + (1 - \beta) \cdot (\nabla E (W^{(t)}))^2 
 \end{equation}
+$$
+
+$$
 \begin{equation}
     W^{(t+1)} = W^{(t)} - \dfrac{\alpha}{\sqrt{v^{(t+1)}}+\epsilon} \cdot \nabla E (W^{(t)})
 \end{equation}
-
+$$
 
 mit $v^{(t)}$ dem gleitenden Mittelwert des quadratischen Gradienten, $\beta$ einem Exponentialfaktor, $\alpha$ der Lernrat und $\epsilon$ einem Wert zum stabilisieren.
 
