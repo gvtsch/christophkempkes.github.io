@@ -73,7 +73,7 @@ plt.show()
 
 
     
-![png](/assets/images/2024-04-01-Neuronale-Netze-am-Beispiel-MNIST_files/2024-04-01-Neuronale-Netze-am-Beispiel-MNIST_12_0.png)
+![<img src="image.png" width="250"/>](/assets/images/2024-04-01-Neuronale-Netze-am-Beispiel-MNIST_files/2024-04-01-Neuronale-Netze-am-Beispiel-MNIST_12_0.png)
     
 
 
@@ -122,7 +122,7 @@ print(f"Label des zufällig gewählten Bildes: {ground_truth}")
 
 
     
-![png](/assets/images/2024-04-01-Neuronale-Netze-am-Beispiel-MNIST_files/2024-04-01-Neuronale-Netze-am-Beispiel-MNIST_16_1.png)
+![<img src="image.png" width="250"/>](/assets/images/2024-04-01-Neuronale-Netze-am-Beispiel-MNIST_files/2024-04-01-Neuronale-Netze-am-Beispiel-MNIST_16_1.png)
     
 
 
@@ -135,7 +135,7 @@ Diese Zahlenwerte sind jene, die in das noch zu beschreibende Input-Layer einges
 
 Während das obige Bild des MNIST Datensatzes eine Feature Map hat, die Graustufenwerte, sieht das bei farbigen Bildern anders aus. Farbige Bilder haben für jeden Farbkanal eine eigene Feature Map: Rot, Grün, Blau. Gebräuchlich sind 8 Bit pro Kanal, was in Summe $16.777.216$ mögliche Farben ergibt. Bei der Erkennung von Ziffern können wir natürlich auf die Farbkanäle verzichten. Es genügen Grauwertstufen.
 
-![name of the image](https://miro.medium.com/v2/resize:fit:720/format:webp/0*xGj2NQwOpsLpx1Ji.png)
+![<img src="image.png" width="250"/>](https://miro.medium.com/v2/resize:fit:720/format:webp/0*xGj2NQwOpsLpx1Ji.png)
 *Die drei Feature Maps eines RGB-Bildes.*
 
 ### **Das Neuronale Netz**
@@ -148,7 +148,7 @@ Die Eingänge oder Eingangs-Ebene bezeichnen wir als Input-Layer, die Ausgänge 
 Die Eingangsmatrix von $28 * 28$ Pixeln transformieren wir zur einfacheren Handhabung zu einem Tensor der Größe $784$. Wir haben dann $784$ in Reihe angeordnete Pixel bzw. Eingänge, die ihrerseits mit jedem Neuron im folgenden Layer verbunden sind. Jedes einzelne dieser Neuronen ist widerum mit jedem Neuron des folgenden Layers verbunden, bis hin zum Output-Layer. Bei dieser Architektur handelt es sich um das sogenannte **Multilayer Perceptron**.
 Es gibt auch andere Architekturen, bei denen das so nicht der Fall ist, aber dazu später mehr.
 
-![Feedforward Netzwerk bzw. Multilayer Perzeptron.](https://tikz.net/wp-content/uploads/2021/12/neural_networks-002.png)
+![<img src="image.png" width="250"/>](https://tikz.net/wp-content/uploads/2021/12/neural_networks-002.png)
 *Feedforward Netzwerk bzw. Multilayer Perzeptron. [Bildquelle](https://tikz.net/wp-content/uploads/2021/12/neural_networks-002.png)*
 
 Der Begriff **Neuron** ist nun so häufig gefallen, dass wir es genauer betrachten sollten.
@@ -509,7 +509,7 @@ print(f"Array: {y_pred[1]}\n"
 
 In dem Array steht für jede der 10 prädizierbaren Ziffern, mit welcher Wahrscheinlichkeit es sich um eben diese Ziffer handelt.
 
-Im obigen Beispiel ist sich das Model sehr sicher. Die größte Wahrscheinlichkeit ist mit $1$ angegeben. Das Netz ist sich also zu über $100\$$ sicher, dass es sich um diese Ziffer handelt.
+Im obigen Beispiel ist sich das Model sehr sicher. Die größte Wahrscheinlichkeit ist mit $1$ angegeben. Das Netz ist sich also zu über $100\%$ sicher, dass es sich um diese Ziffer handelt.
 Und diese Wahrscheinlichkeit steht an der zweiten Stelle im Array, repräsentiert also die $3$.
 
 Dieses Vorgehen wenden ich nun auf alle Daten an.
@@ -594,12 +594,15 @@ In einem anderen, folgenden Beitrag soll es dann um die Optimierer gehen.
 
 Vorwärtspropagation ist der Prozess, bei dem Eingabedaten durch das neuronale Netzwerk fließen, um eine Vorhersage zu generieren. In jeder Schicht werden die Eingaben mit den Gewichten multipliziert und die Biasse addiert. Die resultierende Summe wird dann durch eine Aktivierungsfunktion wie die Sigmoid-Funktion oder die ReLU-Funktion geleitet, um die Aktivierungen der Neuronen zu berechnen. Dieser Prozess wird für jede Schicht wiederholt, bis die Ausgabe erreicht wird. Mathematisch ausgedrückt:
 
-$$
-\begin{aligned}
-z^{(l)} &= W^{(l)} \cdot a^{(l-1)} + b^{(l)} \\
-a^{(l)} &= f(z^{(l)})
-\end{aligned}
-$$
+
+\begin{equation}
+z^{(l)} = W^{(l)} \cdot a^{(l-1)} + b^{(l)} 
+\end{equation}
+
+\begin{equation}
+a^{(l)} = f(z^{(l)})
+\end{equation}
+
 
 Hier ist $z^{(l)}$ die gewichtete Summe der Eingaben in Schicht $l$, $W^{(l)}$ sind die Gewichte, $a^{(l-1)}$ sind die Aktivierungen der vorherigen Schicht, $b^{(l)}$ sind die Biasse und $f()$ ist die Aktivierungsfunktion.
 
@@ -610,28 +613,24 @@ In diesem Abschnitt möchte ein paar der gängigsten Kostenfunktionen nennen.
 * **Mean Squared Error (MSE)**: Die MSE-Funktion misst den durchschnittlichen quadratischen Fehler zwischen den tatsächlichen und erwarteten Ausgaben. Sie wird häufig bei Regressionsproblemen verwendet, bei denen das Ziel darin besteht, eine kontinuierliche Ausgabe zu schätzen. Die Funktion berechnet den quadratischen Unterschied zwischen jeder tatsächlichen und erwarteten Ausgabe und nimmt dann den Durchschnitt über alle Beispiele. Die MSE-Funktion ist empfindlich gegenüber Ausreißern, da der quadratische Fehler stark ansteigt, wenn der Unterschied zwischen den tatsächlichen und erwarteten Werten größer wird.
 
 \begin{equation}
-\nonumber
   MSE = \dfrac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2
 \end{equation}
 
 * **Mean Absolute Error (MAE)**: Die MAE-Funktion misst den durchschnittlichen absoluten Fehler zwischen den tatsächlichen und erwarteten Ausgaben. Im Gegensatz zur MSE-Funktion, die den quadratischen Fehler berücksichtigt, betrachtet MAE den absoluten Fehler. Dies bedeutet, dass Ausreißer in den Daten weniger Einfluss auf die Kosten haben als bei der Verwendung von MSE. Die MAE-Funktion ist ebenfalls bei Regressionsproblemen nützlich und wird oft verwendet, wenn es wichtig ist, den durchschnittlichen Fehler in den tatsächlichen Einheiten der Ausgabe zu verstehen.
 
 \begin{equation}
-\nonumber
   MAE = \dfrac{1}{n} \sum_{i=1}^{n} |y_i - \hat{y}_i|
 \end{equation}
 
 * **Binary Cross-Entropy**: Diese Funktion wird verwendet, wenn es sich um ein binäres Klassifikationsproblem handelt, bei dem die Ausgabe entweder 0 oder 1 ist. Die Funktion misst den Fehler zwischen den tatsächlichen und erwarteten Ausgaben, wobei die Ausgaben als Wahrscheinlichkeiten interpretiert werden. Sie verwendet die logarithmische Funktion, um den Fehler zu berechnen, wobei ein höherer Fehler auftritt, wenn die tatsächliche Ausgabe stark von der erwarteten Ausgabe abweicht. Die Binary Cross-Entropy-Funktion wird oft mit der Sigmoid-Aktivierungsfunktion in der Ausgabeschicht kombiniert.
 
 \begin{equation}
-\nonumber
   Binary Cross Entropy = -\dfrac{1}{n} \sum_{i=1}^{n} [y_i \log(\hat{y}_i) + (1-y_i) \log(1-\hat{y}_i)]
 \end{equation}
 
 * **Categorical Cross-Entropy**: Diese Funktion wird verwendet, wenn es sich um ein mehrklassiges Klassifikationsproblem handelt, bei dem die Ausgabe in mehrere Klassen unterteilt ist. Ähnlich wie bei der binären Cross-Entropy-Funktion misst sie den Fehler zwischen den tatsächlichen und erwarteten Ausgaben, wobei die Ausgaben als Wahrscheinlichkeiten interpretiert werden. Die Categorical Cross-Entropy-Funktion verwendet die logarithmische Funktion, um den Fehler zu berechnen, wobei ein höherer Fehler auftritt, wenn die tatsächliche Ausgabe stark von der erwarteten Ausgabe abweicht. Sie wird oft mit der Softmax-Aktivierungsfunktion in der Ausgabeschicht kombiniert, um die Wahrscheinlichkeiten für jede Klasse zu normalisieren.
 
 \begin{equation}
-\nonumber
   Categorical Cross Entropy = -\dfrac{1}{n} \sum_{i=1}^{n} \sum_{j=1}^{m} y_{ij} \log(\hat{y}_{ij})
 \end{equation}
 
@@ -648,12 +647,14 @@ In allen Fällen ist $y$ der ground truth-Wert und $\hat{y}_i$​ ist die Modell
 
 Backward Propagation ist der Prozess, bei dem der Fehler durch das Netzwerk zurückgeleitet wird, um den Gradienten der Fehlerfunktion bezüglich der Gewichte und Biasse zu berechnen. Der Gradient wird mittels der Kettenregel der Ableitung berechnet und von der Ausgabeschicht zur Eingabeschicht propagiert. Mathematisch ausgedrückt:
 
-$$
-\begin{aligned}
-\delta^{(L)} &= \nabla_a E \odot f'(z^{(L)}) \\
-\delta^{(l)} &= ((W^{(l+1)})^T \cdot \delta^{(l+1)}) \odot f'(z^{(l)})
-\end{aligned}
-$$
+\begin{equation}
+\delta^{(L)} = \nabla_a E \odot f'(z^{(L)}) \\
+\end{equation}
+
+\begin{equation}
+\delta^{(l)} = ((W^{(l+1)})^T \cdot \delta^{(l+1)}) \odot f'(z^{(l)})
+\end{equation}
+
 
 Hierbei ist $\delta^{(L)}$ der Fehler in Schicht $l$, $\nabla_a E$ der Gradient der Fehlerfunktion bezüglich der Ausgaben, $f'(\cdot)$ ist die Ableitung der Aktivierungsfunktion, $z^{(L)}$ ist die gewichtete Summe der Eingaben in Schicht $l$ und $\odot$ steht für die elementweise Multiplikation.
 
@@ -694,7 +695,6 @@ Ein häufiger Use-Case für Sigmoid-Aktivierungsfunktionen findet sich bei binä
 Die Formel für die Sigmoid-Aktivierungsfunktion lautet:
 
 \begin{equation}
-\nonumber
   f(x) = \dfrac{1}{1 + e^{-x}}
 \end{equation}
 
@@ -714,7 +714,6 @@ Die ReLU-Aktivierungsfunktion ist eine gängige Wahl für Probleme des Deep Lear
 Die Formel für die ReLU-Aktivierungsfunktion lautet:
 
 \begin{equation}
-\nonumber
   f(x) = max(0, x)
 \end{equation}
 
@@ -733,7 +732,6 @@ Ein gängiger Use-Case für die Tangens hyperbolicus-Aktivierungsfunktion ist be
 Die Formel für die Tangens hyperbolicus-Aktivierungsfunktion lautet:
 
 \begin{equation}
-\nonumber
   f(x) = tanh(x) 
 \end{equation}
 
@@ -756,7 +754,6 @@ In diesem Abschnitt möchte ich kurz ein paar der üblichen Optimierer beschreib
 SGD ist einer der grundlegendsten Optimierer für das Training neuronaler Netze. Es basiert auf dem Gradientenabstiegsverfahren, bei dem die Gewichte nach jedem Mini-Batch der Trainingsdaten aktualisiert werden, um den Fehler zu minimieren. Die Gewichtsaktualisierung erfolgt entlang der Richtung des negativen Gradienten der Fehlerfunktion, wodurch das Modell Schritt für Schritt verbessert wird.
 
 \begin{equation}
-\nonumber
     W^{(t+1)} = W^{(t)} - \alpha \cdot \nabla E(W^{(t)})
 \end{equation}
 
@@ -766,13 +763,17 @@ mit $\alpha$ der Lernrate und $\nabla E(W^{(t)})$ dem Gradienten der Fehlerfunkt
 
 Adam ist ein beliebter Optimierer, der die Vorteile von AdaGrad und RMSProp kombiniert. Es verwendet sowohl einen adaptiven Lernratenansatz als auch eine Momentenschätzung, um die Gewichte während des Trainings anzupassen. Adam passt die Lernrate für jedes Gewicht basierend auf vergangenen Gradienten und Quadraten der Gradienten an, wodurch er effektiv und robust ist und häufig in der Praxis verwendet wird.
 
-$$
-\begin{aligned}
-    m^{(t+1)}  &= \beta_1 \cdot m^{(t)} + (1 - \beta_1) \cdot \nabla E(W^{(t)}) \\
-    v^{(t+1)}  &= \beta_2 \cdot v^{(t)} + (1 - \beta_2) \cdot (\nabla E(W^{(t)}))^2 \\
-    W^{(t+1)}  &= W^{(t)} - \dfrac{\alpha}{\sqrt{v^{(t+1)}+\Epsilon}} \cdot m^{(t+2)}
-\end{aligned}
-$$
+
+\begin{equation}
+    m^{(t+1)} = \beta_1 \cdot m^{(t)} + (1 - \beta_1) \cdot \nabla E(W^{(t)})
+\end{equation}
+\begin{equation}
+    v^{(t+1)} = \beta_2 \cdot v^{(t)} + (1 - \beta_2) \cdot (\nabla E(W^{(t)}))^2 
+\end{equation}
+\begin{equation}
+  W^{(t+1)} = W^{(t)} - \dfrac{\alpha}{\sqrt{v^{(t+1)}+\epsilon}} \cdot m^{(t+2)}
+\end{equation}
+
 
 mit $m^{(t)}$ und $v^{(t)}$ den gleitenden Mittelwerten des Gradienten und seiner Quadrate, $\beta_1$ und $\beta_2$ den Exponentialfaktoren, $\alpha$ der Lernrate und $\epsilon$ einem Wert zum stabilisieren.
 
@@ -780,12 +781,13 @@ mit $m^{(t)}$ und $v^{(t)}$ den gleitenden Mittelwerten des Gradienten und seine
 
 RMSProp ist eine Variante des Gradientenabstiegsverfahrens, bei der die Lernrate für jedes Gewicht basierend auf dem durchschnittlichen quadratischen Gradienten für dieses Gewicht angepasst wird. Dies ermöglicht eine individuelle Anpassung der Lernrate für jedes Gewicht, was insbesondere bei ungleichmäßig verteilten Gradienten hilfreich ist. RMSProp hilft, die Konvergenzgeschwindigkeit zu verbessern und lokale Minima zu vermeiden.
 
-$$
-\begin{aligned}
-    v^{(t+1)} &= \beta \cdot v^{(t)} + (1 - \beta) \cdot (\nabla E (W^{(t)}))^2 \\
-    W^{(t+1)} &= W^{(t)} - \dfrac{\alpha}{\sqrt{v^{(t+1)}}+\epsilon} \cdot \nabla E (W^{(t)})
-\end{aligned}
-$$
+\begin{equation}
+    v^{(t+1)} = \beta \cdot v^{(t)} + (1 - \beta) \cdot (\nabla E (W^{(t)}))^2 
+\end{equation}
+\begin{equation}
+    W^{(t+1)} = W^{(t)} - \dfrac{\alpha}{\sqrt{v^{(t+1)}}+\epsilon} \cdot \nabla E (W^{(t)})
+\end{equation}
+
 
 mit $v^{(t)}$ dem gleitenden Mittelwert des quadratischen Gradienten, $\beta$ einem Exponentialfaktor, $\alpha$ der Lernrat und $\epsilon$ einem Wert zum stabilisieren.
 
