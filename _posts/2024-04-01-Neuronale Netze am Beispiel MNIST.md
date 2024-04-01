@@ -513,7 +513,7 @@ print(f"Array: {y_pred[1]}\n"
 
 In dem Array steht für jede der 10 prädizierbaren Ziffern, mit welcher Wahrscheinlichkeit es sich um eben diese Ziffer handelt.
 
-Im obigen Beispiel ist sich das Model sehr sicher. Die größte Wahrscheinlichkeit ist mit $1$ angegeben. Das Netz ist sich also zu über $100\$$ sicher, dass es sich um diese Ziffer handelt.
+Im obigen Beispiel ist sich das Model sehr sicher. Die größte Wahrscheinlichkeit ist mit $1$ angegeben. Das Netz ist sich also zu über $100\%$ sicher, dass es sich um diese Ziffer handelt.
 Und diese Wahrscheinlichkeit steht an der zweiten Stelle im Array, repräsentiert also die $3$.
 
 Dieses Vorgehen wenden ich nun auf alle Daten an.
@@ -600,11 +600,11 @@ In einem anderen, folgenden Beitrag soll es dann um die Optimierer gehen.
 Vorwärtspropagation ist der Prozess, bei dem Eingabedaten durch das neuronale Netzwerk fließen, um eine Vorhersage zu generieren. In jeder Schicht werden die Eingaben mit den Gewichten multipliziert und die Biasse addiert. Die resultierende Summe wird dann durch eine Aktivierungsfunktion wie die Sigmoid-Funktion oder die ReLU-Funktion geleitet, um die Aktivierungen der Neuronen zu berechnen. Dieser Prozess wird für jede Schicht wiederholt, bis die Ausgabe erreicht wird. Mathematisch ausgedrückt:
 
 \begin{equation}
-z^{(l)} &= W^{(l)} \cdot a^{(l-1)} + b^{(l)}
+z^{(l)} = W^{(l)} \cdot a^{(l-1)} + b^{(l)}
 \end{equation}
 
 \begin{equation}
-a^{(l)} &= f(z^{(l)})
+a^{(l)} = f(z^{(l)})
 \end{equation}
 
 Hier ist $z^{(l)}$ die gewichtete Summe der Eingaben in Schicht $l$, $W^{(l)}$ sind die Gewichte, $a^{(l-1)}$ sind die Aktivierungen der vorherigen Schicht, $b^{(l)}$ sind die Biasse und $f()$ ist die Aktivierungsfunktion.
@@ -651,11 +651,11 @@ In allen Fällen ist $y$ der ground truth-Wert und $\hat{y}_i$​ ist die Modell
 Backward Propagation ist der Prozess, bei dem der Fehler durch das Netzwerk zurückgeleitet wird, um den Gradienten der Fehlerfunktion bezüglich der Gewichte und Biasse zu berechnen. Der Gradient wird mittels der Kettenregel der Ableitung berechnet und von der Ausgabeschicht zur Eingabeschicht propagiert. Mathematisch ausgedrückt:
 
 \begin{equation}
-\delta^{(L)} &= \nabla_a E \odot f'(z^{(L)}) 
+\delta^{(L)} = \nabla_a E \odot f'(z^{(L)}) 
 \end{equation}
 
 \begin{equation}
-\delta^{(l)} &= ((W^{(l+1)})^T \cdot \delta^{(l+1)}) \odot f'(z^{(l)})
+\delta^{(l)} = ((W^{(l+1)})^T \cdot \delta^{(l+1)}) \odot f'(z^{(l)})
 \end{equation}
 
 Hierbei ist $\delta^{(L)}$ der Fehler in Schicht $l$, $\nabla_a E$ der Gradient der Fehlerfunktion bezüglich der Ausgaben, $f'(\cdot)$ ist die Ableitung der Aktivierungsfunktion, $z^{(L)}$ ist die gewichtete Summe der Eingaben in Schicht $l$ und $\odot$ steht für die elementweise Multiplikation.
@@ -781,10 +781,10 @@ Adam ist ein beliebter Optimierer, der die Vorteile von AdaGrad und RMSProp komb
 \end{equation}
 
 \begin{equation}
-    W^{(t+1)} = W^{(t)} - \dfrac{\alpha}{\sqrt{v^{(t+1)}+\Epsilon}} \cdot m^{(t+2)}
+    W^{(t+1)} = W^{(t)} - \dfrac{\alpha}{\sqrt{v^{(t+1)}+\epsilon}} \cdot m^{(t+2)}
 \end{equation}
 
-mit $m^{(t)}$ und $v^{(t)}$ den gleitenden Mittelwerten des Gradienten und seiner Quadrate, $\beta_1$ und $\beta_2$ den Exponentialfaktoren, $\alpha$ der Lernrate und $\Epsilon$ einem Wert zum stabilisieren.
+mit $m^{(t)}$ und $v^{(t)}$ den gleitenden Mittelwerten des Gradienten und seiner Quadrate, $\beta_1$ und $\beta_2$ den Exponentialfaktoren, $\alpha$ der Lernrate und $\epsilon$ einem Wert zum stabilisieren.
 
 ### **RMSProp (Root Mean Square Propagation)**
 
@@ -795,10 +795,10 @@ RMSProp ist eine Variante des Gradientenabstiegsverfahrens, bei der die Lernrate
 \end{equation}
 
 \begin{equation}
-    W^{(t+1)} = W^{(t)} - \dfrac{\alpha}{\sqrt{v^{(t+1)}}+\Epsilon} \cdot \nabla E (W^{(t)})
+    W^{(t+1)} = W^{(t)} - \dfrac{\alpha}{\sqrt{v^{(t+1)}}+\epsilon} \cdot \nabla E (W^{(t)})
 \end{equation}
 
-mit $v^{(t)}$ dem gleitenden Mittelwert des quadratischen Gradienten, $\beta$ einem Exponentialfaktor, $\alpha$ der Lernrat und $\Epsilon$ einem Wert zum stabilisieren.
+mit $v^{(t)}$ dem gleitenden Mittelwert des quadratischen Gradienten, $\beta$ einem Exponentialfaktor, $\alpha$ der Lernrat und $\epsilon$ einem Wert zum stabilisieren.
 
 ---
 
