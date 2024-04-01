@@ -76,3 +76,4 @@ plt.show()
 
 
     
+![png](/assets/images/2024-04-01-Neuronale Netze am Beispiel MNIST_files/2024-04-01-Neuronale Netze am Beispiel MNIST_12_0.png)
