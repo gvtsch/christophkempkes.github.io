@@ -76,4 +76,3 @@ plt.show()
 
 
     
-![png](2024-04-01-Neuronale%20Netze%20am%20Beispiel%20MNIST_files/2024-04-01-Neuronale%20Netze%20am%20Beispiel%20MNIST_12_0.png)
