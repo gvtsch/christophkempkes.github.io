@@ -702,12 +702,6 @@ Die Formel für die Sigmoid-Aktivierungsfunktion lautet:
 
 Aktivierungsfunktion und Ableitung sind hier dargestellt.
 
-<figure>
-    <img src="", width="500">
-    <figcaption>Sigmoid-Aktivierungsfunktion mit Ableitung, Bild vom Autor
-  </figure>
-
-  
 ![Sigmoid-Aktivierungsfunktion mit Ableitung.](https://miro.medium.com/v2/resize:fit:640/format:webp/1*7XQVdpnz_QctgMkY1wivJg.png)
 *Sigmoid-Aktivierungsfunktion mit Ableitung.*
 
