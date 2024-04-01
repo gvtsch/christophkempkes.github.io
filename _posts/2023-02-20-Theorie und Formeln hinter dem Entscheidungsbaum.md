@@ -6,7 +6,6 @@ tags: [ML, DL, AI]     # TAG names should always be lowercase
 toc: true
 ---
 
-# Theorie und Formeln hinter dem Entscheidungsbaum
 In den letzten beiden Artikeln haben wir gelernt, wie Entscheidungsbäume und Random Forests programmiert werden können. In diesem Artikel soll es um die Theorie dahinter gehen. Doch zunächst eine kleine Wiederholung.
 
 ![Entscheidungsbaum Wein-Datensatz — Quellcode am Ende des Beitrags, Bild vom Autor](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*SYOAspZ_sVzD0oNpCeflTA.png)

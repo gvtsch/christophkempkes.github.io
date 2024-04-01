@@ -6,7 +6,7 @@ tags: [ML, DL, AI]     # TAG names should always be lowercase
 toc: true
 ---
 
-# Supervised, Unsupervised und Reinforcement Learning — Eine Übersicht
+
 Aus dem letzten Artikel wissen wir, dass im Grunde alle gängigen Verfahren der künstlichen Intelligenz als schwache KI einzuordnen sind. Und diese Verfahren und Methoden lassen sich noch weiter unterteilen. Dieser Unterteilung wollen wir uns heute widmen.
 
 Tatsächlich befassen wir uns, wenn ich von künstlicher Intelligenz rede, mit dem Machine Learning (ML) — einer Kategorie künstlicher Intelligenz. ML lässt sich weiter unterteilen in Supervised, Unsupervised und Reinforcement Learning. Mit diesen dreien und ihren jeweiligen Unterkategorien beschäftigten wir uns heute.

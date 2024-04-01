@@ -7,8 +7,6 @@ toc: true
 math: true
 ---
 
-# Wie kann man einem Computer beibringen, eine Ziffer zu erkennen?
-
 In diesem Beitrag versuche ich, euch zu zeigen oder näher zu bringen, wie ein künstliches Neuronales Netz funktioniert. Weil das Thema sehr umfangreich ist, habe ich einen roten Faden einbauen wollen. An Hand eines Beispiels, dem roten Faden, hangel ich mich durch das Thema.
 
 Wir werden das **Hallo Welt!** des maschinellen Lernens betrachten: Der **MNIST** Datensatz.

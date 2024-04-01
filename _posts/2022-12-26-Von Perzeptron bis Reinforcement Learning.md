@@ -6,7 +6,7 @@ tags: [ML, DL, AI]     # TAG names should always be lowercase
 toc: true
 ---
 
-# Von Perzeptron bis Reinforcement Learning
+
 ## Worum es in dieser Artikel-Reihe gehen soll
 Indiesem Artikel möchte ich dir beschreiben, wer ich bin und was dich in den folgenden Artikeln erwarten wird. Es soll um die Grundlagen der künstlichen Intelligenz gehen. Ich werde meine Artikel auf Deutsch schreiben und ggf. ins Englische übersetzen. Fachbegriffe werden dabei größtenteils englisch sein. Warum ich glaube, dir etwas darüber erzählen zu können?
 
