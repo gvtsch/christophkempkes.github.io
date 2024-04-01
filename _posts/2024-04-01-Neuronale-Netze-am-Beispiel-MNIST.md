@@ -1,6 +1,5 @@
 ---
 title: Wie kann man einem Computer beibringen, eine Ziffer zu erkennen? Oder Schriftzeichen? Handynummern? Schilder?
-subtitle: Wie funktionieren Neuronale Netze?  
 date: 2024-04-01 11:13:00 +/-TTTT
 categories: [Maschinelles Lernen]
 tags: [ML, DL, AI]     # TAG names should always be lowercase
