@@ -841,7 +841,7 @@ Ein weiteres interessantes Konzept ist das PGNN, auch bekannt als Physical Infor
 *Gradientenabstiegsverfahren im 3-dimensionalen Raum. [Bildquelle](https://en.wikipedia.org/wiki/Physics-informed_neural_networks)*
 
 
-### **Autoencoder-Layer**
+### **Autoencoder**
 
 Autoencoder sind ein spezieller Typ von neuronalen Netzen, bei denen das Ziel darin besteht, die Eingabedaten so genau wie möglich zu rekonstruieren. Sie bestehen aus einem Encoder-Teil, der die Eingabedaten in einen komprimierten latenten Raum abbildet, und einem Decoder-Teil, der die Daten aus diesem Raum in das ursprüngliche Eingabeformat zurück transformiert.
 
