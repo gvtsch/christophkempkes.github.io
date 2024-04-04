@@ -1,4 +1,5 @@
 ---
+title: Datenschutzerklärung
 icon: fas fa-tags
 order: 7
 ---
