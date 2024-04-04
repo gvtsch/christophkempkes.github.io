@@ -3,7 +3,6 @@ icon: fas fa-tags
 order: 7
 ---
 
-# Datenschutzerklärung
 ## Hosting
 Unser Hoster erhebt in sog. Logfiles folgende Daten, die Ihr Browser übermittelt:  
 
