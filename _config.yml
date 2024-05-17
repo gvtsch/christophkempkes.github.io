@@ -23,13 +23,13 @@ description: >- # used by seo meta and the atom feed
 
 # Fill in the protocol & hostname for your site.
 # e.g. 'https://username.github.io', note that it does not end with a '/'.
-url: "https://gvtsch.github.io"
+url: "https://ChristophKempkes.github.io"
 
 plugins:
   - jekyll-spaceship
 
 github:
-  username: gvtsch # change to your github username
+  username: ChristophKempkes # change to your github username
 
 twitter:
   username: # change to your twitter username
@@ -41,7 +41,7 @@ social:
   email: kempkes.christoph@gmail.com # change to your email address
   links:
     # The first element serves as the copyright owner's link
-    - https://github.com/gvtsch # change to your github homepage
+    - https://github.com/ChristophKempkes # change to your github homepage
     - https://www.linkedin.com/in/christoph-kempkes/
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
