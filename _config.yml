@@ -29,7 +29,7 @@ plugins:
   - jekyll-spaceship
 
 github:
-  username: ChristophKempkes # change to your github username
+  username: gvtsch # change to your github username
 
 twitter:
   username: # change to your twitter username
@@ -41,7 +41,7 @@ social:
   email: kempkes.christoph@gmail.com # change to your email address
   links:
     # The first element serves as the copyright owner's link
-    - https://github.com/ChristophKempkes # change to your github homepage
+    - https://github.com/gvtsch # change to your github homepage
     - https://www.linkedin.com/in/christoph-kempkes/
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
