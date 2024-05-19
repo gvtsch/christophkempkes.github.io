@@ -1,6 +1,6 @@
 ---
 title: Sortieralgorithmen mit Python
-date: 2024-04-01 13:00:00 +/-TTTT
+date: 2024-05-19 11:00:00 +/-TTTT
 categories: [Programmieren]
 tags: [Python]     # TAG names should always be lowercase
 toc: true
@@ -88,7 +88,7 @@ plt.show()
 
 
     
-![png](Start.png)
+![Startkonfiguration](Start.png)
     
 
 
@@ -103,7 +103,7 @@ Bubble Sort ist ein einfacher Vergleichssortieralgorithmus, der wiederholt benac
 * **Zeitkomplexität**: $O(n²)$ im Durchschnitt und im schlimmsten Fall. Das bedeutet, dass die Anzahl der Vergleiche und Vertauschungen quadratisch mit der Anzahl der Elemente im Array zunimmt. Für große Datensätze wird Bubble Sort daher sehr langsam.
 * **Besonderheiten**: Bubble Sort ist einfach zu verstehen und zu implementieren, aber ineffizient für große Datensätze. Er ist ein stabiler Sortieralgorithmus, d.h., die relative Reihenfolge gleicher Elemente bleibt erhalten.
 
-![Bubble Sort]("bubble_sort.gif")
+![Bubble Sort](bubble_sort.gif)
 
 ```python
 # Bubble Sort Algorithmus
