@@ -1,6 +1,8 @@
 ---
 layout: page
 title: Datenschutzerklärung
+icon: fas fas fa-archive
+
 ---
 
 ## Hosting
