@@ -1,8 +1,8 @@
 ---
 title: Sortieralgorithmen
 date: 2024-05-19 11:00:00 +/-TTTT
-categories: [Programmieren]
-tags: [Python]     # TAG names should always be lowercase
+categories: [PROGRAMMING]
+tags: [python, programming]     # TAG names should always be lowercase
 toc: true
 img_path: /assets/images/2024-05-19-Sortieralgorithmen_files/
 ---
