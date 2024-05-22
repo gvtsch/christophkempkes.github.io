@@ -18,7 +18,7 @@ Anaconda ist eine umfassende Distribution für Python und R, die speziell für w
 Sie bietet eine bequeme Möglichkeit, eine Vielzahl von vorinstallierten Paketen und Tools zu erhalten, die in diesen Bereichen häufig verwendet werden, ohne sie einzeln installieren zu müssen.
 Anaconda enthält den Paket- und Umgebungsmanager conda, der eine zentrale Rolle bei der Verwaltung von Paketen und Abhängigkeiten spielt.
 
-<img src="https://upload.wikimedia.org/wikipedia/en/c/cd/Anaconda_Logo.png" width="150">
+<img src="https://upload.wikimedia.org/wikipedia/en/c/cd/Anaconda_Logo.png" width="150" alt="Anaconda Logo">
 
 ### Funktionsweise:
 * **Paketverwaltung**: conda ermöglicht das Installieren, Aktualisieren und Entfernen von Paketen aus verschiedenen Quellen, einschließlich der eigenen Anaconda-Repositories und des Python Package Index (PyPI). Es kümmert sich automatisch um das Herunterladen und Installieren von Abhängigkeiten, um sicherzustellen, dass alle erforderlichen Komponenten vorhanden sind.
@@ -28,7 +28,7 @@ Anaconda enthält den Paket- und Umgebungsmanager conda, der eine zentrale Rolle
 ## Pip
 Pip ist der offizielle und am weitesten verbreitete Paketmanager für Python. Er ist in den meisten Python-Installationen standardmäßig enthalten und dient als Hauptwerkzeug zum Installieren, Aktualisieren und Deinstallieren von Python-Paketen aus dem Python Package Index (PyPI). PyPI ist ein riesiges Repository von Python-Software, das eine breite Palette von Paketen für verschiedene Zwecke enthält.
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/800px-Python-logo-notext.svg.png" width="100">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/800px-Python-logo-notext.svg.png" width="100" clt="Python Logo>
 
 ### Funktionsweise:
 * **Paketinstallation**: Mit pip kannst du Pakete einfach über die Kommandozeile installieren, indem du den Paketnamen angibst. Pip lädt das Paket und alle erforderlichen Abhängigkeiten von PyPI herunter und installiert sie in deiner Python-Umgebung.
