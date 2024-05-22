@@ -21,8 +21,8 @@ Es wird ein einfacher Datensatz sein, den man hoffentlich gut visualisieren kann
 ```python
 # Zunächst werden alle benötigten Bibliotheken importiert
 import matplotlib.pyplot as plt
-import random
 import matplotlib.cm as cm
+import random
 import os
 import time
 
@@ -46,26 +46,27 @@ Dann definiere ich eine Funktion, die ich noch häufiger einsetzen werden, um da
 cmap = cm.get_cmap('YlGnBu')  # Farbverlauf von Gelb über Grün zu Blau
 
 # Funktion zum Aktualisieren des Balkendiagramms
-def update_chart(data, iteration, xlim, ylim, folder_name, name = "Dataset",):
-    i = len(data)
-    colors = [cmap(x/i) for x in data]
-    plt.bar(range(0, i), data, color=colors)
+def update_chart(data, iteration, xlim, ylim, folder_name, name="Dataset"):
+    num_data = len(data)
+    colors = [cmap(x / num_data) for x in data]
+    plt.bar(range(num_data), data, color=colors)
     plt.xlim(xlim)
     plt.ylim(ylim)
     plt.xticks([])
     plt.yticks([])
-    
-    if not os.path.exists(folder_name):
-      os.makedirs(folder_name)
 
-    if name == "Start": # Startkonfiguration
-      plt.title(f'Startkonfiguration')
-      plt.savefig(f'{folder_name}/{name}.png')
-    else: # Sortierte Daten
-      plt.title(f'Sortierung {name} - Schritt {iteration}')
-      plt.savefig(f'{folder_name}/{name}_Iteration_{iteration:04d}.png')  # Speichere den Plot als PNG-Datei
-    
+    if not os.path.exists(folder_name):
+        os.makedirs(folder_name)
+
+    if name == "Start":
+        plt.title('Startkonfiguration')
+        plt.savefig(f'{folder_name}/{name}.png')
+    else:
+        plt.title(f'Sortierung {name} - Schritt {iteration}')
+        plt.savefig(f'{folder_name}/{name}_Iteration_{iteration:04d}.png')  # Speichere den Plot als PNG-Datei
+
     plt.close()
+
 ```  
 Theoretisch muss man den Plot natürlich nicht abspeichern. Für meinen Workflow beim Erstellen dieses Beitrages ist das hingegen sehr hilfreich.
 Und dann wird die Funktion auch schon das erste Mal aufgerufen. 
