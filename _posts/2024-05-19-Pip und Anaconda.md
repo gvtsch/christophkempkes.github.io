@@ -34,6 +34,7 @@ Pip ist der offizielle und am weitesten verbreitete Paketmanager für Python. Er
 
 ## Unterschiede, Vor- und Nachteile
 **Merkmal** | **Anaconda (conda)** | **Pip**
+
 ----- | ----- | -----
 **Paketquellen** | Anaconda-Repositories, PyPI	| PyPI
 **Umgebungen** | Integrierte Umgebungsverwaltung | Benötigt zusätzliche Tools (z. B. virtualenv, venv)
