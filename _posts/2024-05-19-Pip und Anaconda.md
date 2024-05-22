@@ -1,8 +1,8 @@
 ---
 title: Pip und Anaconda
 date: 2024-05-19 11:00:00 +/-TTTT
-categories: [ALLGEMEIN]
-tags: [Python, Programmieren]     # TAG names should always be lowercase
+categories: [GENERAL]
+tags: [python, programming]     # TAG names should always be lowercase
 toc: true
 img_path: /assets/images/
 ---
@@ -33,12 +33,12 @@ Pip ist der offizielle und am weitesten verbreitete Paketmanager für Python. Er
 * **Kommandozeilenorientiert**: Pip ist hauptsächlich ein Kommandozeilenwerkzeug und bietet keine grafische Benutzeroberfläche wie Anaconda Navigator. Dies macht es für Benutzer, die mit der Kommandozeile vertraut sind, effizient, kann aber für Anfänger eine Lernkurve darstellen.
 
 ## Unterschiede, Vor- und Nachteile
-|**Merkmal** | **Anaconda (conda)** | **Pip**|
-
-|**Paketquellen** | Anaconda-Repositories, PyPI	| PyPI|
-|**Umgebungen** | Integrierte Umgebungsverwaltung | Benötigt zusätzliche Tools (z. B. virtualenv, venv)|
-|**Pakettypen** | Python-Pakete, Conda-Pakete (auch nicht-Python-Software) | Nur Python-Pakete|
-|**Installation** | Oft einfacher, da Abhängigkeiten besser aufgelöst werden | Manchmal komplexer bei Abhängigkeiten|
-|**Zielgruppe** | Data Scientists, wissenschaftliches Rechnen | Allgemeine Python-Entwicklung|
-|**Benutzeroberfläche** | Grafisch (Anaconda Navigator) und Kommandozeile | Nur Kommandozeile|
-|**Speicherplatz** | Benötigt mehr Speicherplatz aufgrund der vielen Pakete | Geringer Speicherbedarf|
+**Merkmal** | **Anaconda (conda)** | **Pip**
+----- | ----- | -----
+**Paketquellen** | Anaconda-Repositories, PyPI	| PyPI
+**Umgebungen** | Integrierte Umgebungsverwaltung | Benötigt zusätzliche Tools (z. B. virtualenv, venv)
+**Pakettypen** | Python-Pakete, Conda-Pakete (auch nicht-Python-Software) | Nur Python-Pakete
+**Installation** | Oft einfacher, da Abhängigkeiten besser aufgelöst werden | Manchmal komplexer bei Abhängigkeiten
+**Zielgruppe** | Data Scientists, wissenschaftliches Rechnen | Allgemeine Python-Entwicklung
+**Benutzeroberfläche** | Grafisch (Anaconda Navigator) und Kommandozeile | Nur Kommandozeile
+**Speicherplatz** | Benötigt mehr Speicherplatz aufgrund der vielen Pakete | Geringer Speicherbedarf
