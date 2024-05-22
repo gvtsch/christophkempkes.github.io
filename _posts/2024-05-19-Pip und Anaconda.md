@@ -1,8 +1,8 @@
 ---
 title: Pip und Anaconda
 date: 2024-05-19 11:00:00 +/-TTTT
-categories: [ALLGEMEIN]
-tags: [Python, Programmieren]     # TAG names should always be lowercase
+categories: [GENERAL]
+tags: [python, programming]     # TAG names should always be lowercase
 toc: true
 img_path: /assets/images/
 ---
