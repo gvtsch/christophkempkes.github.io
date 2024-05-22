@@ -28,7 +28,7 @@ Anaconda enthält den Paket- und Umgebungsmanager conda, der eine zentrale Rolle
 ## Pip
 Pip ist der offizielle und am weitesten verbreitete Paketmanager für Python. Er ist in den meisten Python-Installationen standardmäßig enthalten und dient als Hauptwerkzeug zum Installieren, Aktualisieren und Deinstallieren von Python-Paketen aus dem Python Package Index (PyPI). PyPI ist ein riesiges Repository von Python-Software, das eine breite Palette von Paketen für verschiedene Zwecke enthält.
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/800px-Python-logo-notext.svg.png" width="100" clt="Python Logo">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/800px-Python-logo-notext.svg.png" width="100" alt="Python Logo">
 
 ### Funktionsweise:
 * **Paketinstallation**: Mit pip kannst du Pakete einfach über die Kommandozeile installieren, indem du den Paketnamen angibst. Pip lädt das Paket und alle erforderlichen Abhängigkeiten von PyPI herunter und installiert sie in deiner Python-Umgebung.
