@@ -2,7 +2,7 @@
 title: Mein erster Post
 date: 2024-03-24 13:13:00 +/-TTTT
 categories: [GENERAL]
-tags: [allgemeines]     # TAG names should always be lowercase
+tags: [general]     # TAG names should always be lowercase
 toc: false
 ---
 
