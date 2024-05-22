@@ -1,7 +1,7 @@
 ---
 title: Neuronale Netze am Beispiel MNIST
 date: 2024-04-01 13:00:00 +/-TTTT
-categories: [Maschinelles Lernen]
+categories: [MACHINE LEARNING]
 tags: [ML, DL, AI]     # TAG names should always be lowercase
 toc: true
 img_path: /assets/images/2024-04-01-Neuronale Netze am Beispiel MNIST_files/
