@@ -1,7 +1,6 @@
 ---
+layout: page
 title: Datenschutzerklärung
-icon: fas fa-tags
-order: 7
 ---
 
 ## Hosting
