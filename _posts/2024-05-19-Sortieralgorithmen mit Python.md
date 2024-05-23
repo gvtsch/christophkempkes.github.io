@@ -1,5 +1,5 @@
 ---
-title: Sortieralgorithmen
+title: Sortieralgorithmen in Python: Eine visuelle Erkundung
 date: 2024-05-19 11:00:00 +/-TTTT
 categories: [PROGRAMMING]
 tags: [Python]     # TAG names should always be lowercase
@@ -8,21 +8,23 @@ img_path: /assets/images/2024-05-19-Sortieralgorithmen_files/
 ---
 
 # Sortieralgorithmen mit Python
+Neulich habe ich mich gefragt, wie eigentlich Sortieralgorithmen funktioniert. Das hat mich dazu gebracht, mich näher mit eben diesen zu beschäftigen. Dabei habe ich viel Interessantes gelernt, das ich gerne mit dir teilen möchte.
 
-Ich habe mich neulich gefragt, was es für gängige Sortieralgorithmen gibt. Wie funktionieren sie? Wie schnell sind sie? Gibt es koriose Algorithmen usw.
-Was ich dabei gelernt habe, möchte ich hier teilen. Ich werde verschiedene Algorithmen in Python umsetzen und versuchen den Vorgang grafisch darszustellen.
-Dazu brauche ich zunächst einen Datensatz.
+In diesem Beitrag werde ich verschiedene Sortieralgorithmen vorstellen und ihre Funktionsweise anhand von Python-Code und anschaulichen Grafiken erklären. Ich werde mir sowohl bekannte Algorithmen wie Bubblesort und Quicksort als auch ungewöhnlichere Vertreter wie Bogosort ansehen. Dabei werde ich auch auf die Geschwindigkeit der Algorithmen eingehen und herausfinden, welche sich für welche Anwendungsfälle eignen.
 
-## Der zu sortierende Datensatz
+## Warum sind Sortieralgorithmen wichtig?
+Sortieralgorithmen spielen in der Informatik eine wichtige Rolle. Sie werden überall dort eingesetzt, wo Daten geordnet werden müssen, z.B. in Datenbanken, Suchmaschinen oder bei der Verarbeitung großer Datenmengen. Effiziente Sortieralgorithmen können die Geschwindigkeit von Anwendungen erheblich verbessern.
 
-Es wird ein einfacher Datensatz sein, den man hoffentlich gut visualisieren kann. Und zwar eine gewisse Anzahl von Integerwerten, die jedes Mal gleich randomisiert sein sollten. Eine Visualisierung forgt gleich.
+Im nächsten Abschnitt werde ich zunächst einen Datensatz erstellen, den ich dann mit verschiedenen Sortieralgorithmen bearbeiten werde.
 
+# Der zu sortierende Datensatz
+Es wird ein einfacher Datensatz sein, den man hoffentlich gut visualisieren kann. Und zwar eine gewisse Anzahl von Integerwerten, die jedes Mal gleich randomisiert sein sollten. Eine Visualisierung folgt gleich.
 
 ```python
 # Zunächst werden alle benötigten Bibliotheken importiert
 import matplotlib.pyplot as plt
-import random
 import matplotlib.cm as cm
+import random
 import os
 import time
 
@@ -39,7 +41,7 @@ n = 50
 dataset = random.sample(range(1, n+1), n)
 ```
 
-Dann definiere ich eine Funktion, die ich noch häufiger einsetzen werden, um das Sortieren zu visualisieren.
+Dann definiere ich eine Funktion, die ich noch häufiger einsetzen werde, um das Sortieren zu visualisieren.
 
 
 ```python
@@ -90,13 +92,13 @@ plt.show()
     
 Und dann soll es auch schon losgehen. 
 
-## Sortieralgorithmen
+# Sortieralgorithmen
 
 Im folgenden werde ich ein paar Sortieralgorithmen vorstellen, die so weit ich weiß, zu den gängigsten gehören. Ich werde zu jedem Algorithmus ein paar Worte verlieren und den Algorithmus anschließend implementieren. Da ich den Sortiervorgang auch visualisieren möchte, werde ich ein paar zusätzliche, für den Algorithmus unnötige Zeilen programmieren. Ich habe versucht das alles konsistent zu halten, aber weil dieser Beitrag mit einigen Pausen entstanden ist, gibt es hier und da vermutlich ein paar Ausreißer. 
 
 ---
 
-### Bubble Sort
+## Bubble Sort
 
 Bubble Sort ist ein einfacher Vergleichssortieralgorithmus, der wiederholt benachbarte Elemente vergleicht und sie vertauscht, wenn sie in der falschen Reihenfolge sind. Dieser Prozess wird so lange fortgesetzt, bis keine Vertauschungen mehr nötig sind, was bedeutet, dass das Array sortiert ist. Der Name "Bubble Sort" kommt daher, dass kleinere Elemente wie Blasen im Wasser nach oben steigen, genau wie die zu sortierenden Elemente aufsteigen.
 * **Funktionsweise**: In jedem Durchlauf wird das Array von Anfang bis Ende durchlaufen. Dabei werden jeweils zwei benachbarte Elemente verglichen. Wenn das linke Element größer ist als das rechte, werden sie vertauscht. Am Ende des ersten Durchlaufs befindet sich das größte Element am Ende des Arrays. Im zweiten Durchlauf wird das zweitgrößte Element gefunden und so weiter.
@@ -143,7 +145,7 @@ Das was ich hier für Bubble Sort ausgeführt habe, führe ich so auch für die 
 
 ---
 
-### Insertion Sort
+## Insertion Sort
 
 Insertion Sort baut das sortierte Array schrittweise auf, indem er jedes Element aus dem unsortierten Teil nimmt und es an der richtigen Stelle im sortierten Teil einfügt.
 * **Funktionsweise**: Der Algorithmus beginnt mit dem zweiten Element und vergleicht es mit dem ersten Element. Wenn es kleiner ist, wird es vor dem ersten Element eingefügt. Dann wird das dritte Element genommen und mit den beiden ersten verglichen und so weiter. Am Ende jedes Schritts ist der linke Teil des Arrays sortiert.
@@ -183,7 +185,7 @@ for i, data in enumerate(insertion_sort(dataset)):
 
 ---
 
-### Selection Sort
+## Selection Sort
 
 Selection Sort findet in jedem Durchlauf das kleinste Element im unsortierten Teil des Arrays und tauscht es mit dem ersten Element des unsortierten Teils.
 * **Funktionsweise**: Der Algorithmus durchläuft das Array und findet das kleinste Element. Dieses wird mit dem ersten Element vertauscht. Dann wird der Vorgang für den restlichen, unsortierten Teil des Arrays wiederholt.
@@ -223,7 +225,7 @@ for i, data in enumerate(selection_sort(dataset)):
     update_chart(data, i+1,  xlim=[0, n+1], ylim=[0, n+.5], folder_name="Sortieralgorithmen/selection_sort", name="Selection Sort")
 ```
 
-### Merge Sort
+## Merge Sort
 
 Merge Sort ist ein "Teile und Herrsche"-Algorithmus, der das Array rekursiv in zwei Hälften teilt, jede Hälfte sortiert und dann die sortierten Hälften zusammenführt.
 * **Funktionsweise**: Das Array wird solange halbiert, bis nur noch einzelne Elemente übrig sind. Diese sind trivialerweise sortiert. Dann werden die einzelnen Elemente zu sortierten Paaren zusammengeführt, dann Paare zu Vierergruppen und so weiter, bis das gesamte Array sortiert ist.
@@ -287,7 +289,7 @@ for i, data in enumerate(merge_sort(dataset)):
     update_chart(data, i+1,  xlim=[0, n+1], ylim=[0, n+.5], folder_name="Sortieralgorithmen/merge_sort", name="Merge Sort")
 ```
 
-### Quick Sort
+## Quick Sort
 
 Quick Sort ist ein weiterer "Teile und Herrsche"-Algorithmus. Er wählt ein Element als "Pivot" und partitioniert das Array in zwei Teilbereiche: Elemente kleiner als das Pivot und Elemente größer als das Pivot. Anschließend werden die Teilbereiche rekursiv sortiert.
 * **Funktionsweise**: Der Algorithmus wählt ein Element als "Pivot" und teilt das Array in zwei Teilbereiche: Elemente kleiner als das Pivot und Elemente größer als das Pivot. Diese Teilbereiche werden dann rekursiv sortiert. Die Wahl des Pivots kann die Effizienz des Algorithmus stark beeinflussen.
@@ -340,7 +342,7 @@ for i, data in enumerate(quick_sort_visualized(dataset)):
     update_chart(data, i+1,  xlim=[0, n+1], ylim=[0, n+.5], folder_name="Sortieralgorithmen/quick_sort", name="Quick Sort")
 ```
 
-### Heap Sort
+## Heap Sort
 
 Heap Sort nutzt eine spezielle Datenstruktur namens Heap, um das Array zu sortieren. Ein Heap ist ein binärer Baum, in dem jeder Knoten größer (oder kleiner, je nach Implementierung) ist als seine Kinder.
 * **Funktionsweise**: Der Heap Sort Algorithmus beginnt mit der Umwandlung des Arrays in einen Heap. Dann wird das größte Element (die Wurzel des Heaps) entfernt und an das Ende des Arrays gestellt. Dieser Prozess wird wiederholt, bis das gesamte Array sortiert ist. Nach jedem Entfernen wird der Heap wiederhergestellt, um die Heap-Eigenschaft zu erhalten.
@@ -396,10 +398,10 @@ def heap_sort(arr):
 
 ```python
 for i, data in enumerate(heap_sort(dataset)):
-    update_chart(data, i+1, xlim=[0, n+1], ylim=[0, n+.5], folder_name="Sortieralgorithmen/Heap_sort", name="Heap Sort")
+    update_chart(data, i+1, xlim=[0, n+1], ylim=[0, n+.5], folder_name="Sortieralgorithmen/heap_sort", name="Heap Sort")
 ```
 
-### Radix Sort
+## Radix Sort
 
 Radix Sort sortiert Zahlen nach ihren einzelnen Ziffern, beginnend mit der niedrigsten Stelle (Einerstelle).
 * **Funktionsweise**: Radix Sort sortiert Zahlen basierend auf ihren einzelnen Ziffern, beginnend mit der niedrigsten Stelle (Einerstelle). In jedem Durchlauf werden die Zahlen in "Buckets" einsortiert, basierend auf der Ziffer an der aktuellen Stelle. Dann werden die Buckets in der richtigen Reihenfolge wieder zusammengefügt. Dieser Prozess wird für jede Stelle wiederholt, bis alle Stellen sortiert sind.
@@ -451,7 +453,7 @@ for i, data in enumerate(radix_sort(dataset)):
     update_chart(data, i+1,  xlim=[0, n+1], ylim=[0, n+.5], folder_name="Sortieralgorithmen/radix_sort", name="Radix Sort")
 ```
 
-### Bogo Sort
+## Bogo Sort
 
 Bogo Sort ist ein ineffizienter und nicht-deterministischer Sortieralgorithmus. Er funktioniert, indem er das Array zufällig mischt und dann überprüft, ob es sortiert ist. Dieser Vorgang wird wiederholt, bis das Array zufällig in die richtige Reihenfolge gebracht wird. Aus diesem Grund habe ich die größe des Datensatzes verkleinert.
 * **Funktionsweise**: Bogo Sort mischt das Array zufällig und überprüft dann, ob es sortiert ist. Dieser Prozess wird so lange wiederholt, bis das Array zufällig in die richtige Reihenfolge gebracht wird. Es gibt keine Garantie dafür, wie lange dies dauern wird. Im schlimmsten Fall kann es unendlich lange dauern.
@@ -488,7 +490,7 @@ for i, data in enumerate(bogo_sort(dataset)):
     update_chart(data, i+1,  xlim=[0, n+1], ylim=[0, n+.5], folder_name="Sortieralgorithmen/bogo_sort", name="Bogo Sort")
 ```
 
-### Sleep Sort
+## Sleep Sort
 
 Sleep Sort ist ein unkonventioneller und ineffizienter Sortieralgorithmus, der auf der Idee basiert, dass jeder Thread für eine Zeit "schläft", die proportional zum Wert des Elements ist. Auch hier verzichte darauf, einen großen Datensatz zu verwenden.
 * **Funktionsweise**: Sleep Sort startet für jedes Element im Array einen Thread. Jeder Thread "schläft" für eine Zeit, die proportional zum Wert des Elements ist. Wenn ein Thread aufwacht, gibt er sein Element aus. Da Threads mit kleineren Werten zuerst aufwachen, werden die Elemente in sortierter Reihenfolge ausgegeben.
@@ -541,7 +543,7 @@ for i, data in enumerate(sleep_sort(dataset)):
 
 Es gibt noch viele weitere Sortieralgorithmen. Und den einen oder anderen werde ich vielleicht noch ergänzen.
 
-## Gifs erstellen
+# Gifs erstellen
 
 
 ```python
