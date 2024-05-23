@@ -10,6 +10,8 @@ img_path: /assets/images/2024-05-19-Sortieralgorithmen_files/
 # Sortieralgorithmen in Python: Eine visuelle Erkundung
 Neulich habe ich mich gefragt, wie eigentlich Sortieralgorithmen funktioniert. Das hat mich dazu gebracht, mich näher mit eben diesen zu beschäftigen. Dabei habe ich viel Interessantes gelernt, das ich gerne mit dir teilen möchte.
 
+![PNGs of the different sorting algorithms](final.gif)
+
 In diesem Beitrag werde ich verschiedene Sortieralgorithmen vorstellen und ihre Funktionsweise anhand von Python-Code und anschaulichen Grafiken erklären. Ich werde mir sowohl bekannte Algorithmen wie Bubblesort und Quicksort als auch ungewöhnlichere Vertreter wie Bogosort ansehen. Dabei werde ich auch auf die Geschwindigkeit der Algorithmen eingehen und herausfinden, welche sich für welche Anwendungsfälle eignen.
 
 ## Warum sind Sortieralgorithmen wichtig?
@@ -51,7 +53,7 @@ cmap = cm.get_cmap('YlGnBu')  # Farbverlauf von Gelb über Grün zu Blau
 def update_chart(data, iteration, xlim, ylim, folder_name, name = "Dataset",):
     i = len(data)
     colors = [cmap(x/i) for x in data]
-    plt.bar(range(0, i), data, color=colors)
+    plt.bar(range(1, i+1), data, color=colors)
     plt.xlim(xlim)
     plt.ylim(ylim)
     plt.xticks([])
@@ -60,11 +62,11 @@ def update_chart(data, iteration, xlim, ylim, folder_name, name = "Dataset",):
     if not os.path.exists(folder_name):
       os.makedirs(folder_name)
 
-    if name == "Start": # Startkonfiguration
+    if name == "Start":
       plt.title(f'Startkonfiguration')
       plt.savefig(f'{folder_name}/{name}.png')
-    else: # Sortierte Daten
-      plt.title(f'Sortierung {name} - Schritt {iteration}')
+    else:
+      plt.title(f'{name} - Step {iteration}')
       plt.savefig(f'{folder_name}/{name}_Iteration_{iteration:04d}.png')  # Speichere den Plot als PNG-Datei
     
     plt.close()
@@ -138,7 +140,7 @@ Danach rufe ich, und das wird sich an alle Sortieralgorithmen in meinem Beitrag 
 
 ```python
 for i, data in enumerate(bubble_sort(dataset)):
-    update_chart(data, i+1,  xlim=[0, n+1], ylim=[0, n+.5], folder_name="Sortieralgorithmen/bubble_sort", name="Bubble Sort")
+    update_chart(data, i+1,  xlim=[0, n+1], ylim=[0, n+.5], folder_name="Sortieralgorithmen/bubble_sort", name="Bubblesort")
 ```
 
 Das was ich hier für Bubble Sort ausgeführt habe, führe ich so auch für die anderen Sortiervorgänge durch, werde es aber nicht mehr entsprechend kommentieren.
@@ -180,7 +182,7 @@ def insertion_sort(data):
 
 ```python
 for i, data in enumerate(insertion_sort(dataset)):
-    update_chart(data, i+1,  xlim=[0, n+1], ylim=[0, n+.5], folder_name="Sortieralgorithmen/insertion_sort", name="Insertion Sort")
+    update_chart(data, i+1,  xlim=[0, n+1], ylim=[0, n+.5], folder_name="Sortieralgorithmen/insertion_sort", name="Insertionsort")
 ```
 
 ---
@@ -222,7 +224,7 @@ def selection_sort(data):
 
 ```python
 for i, data in enumerate(selection_sort(dataset)):
-    update_chart(data, i+1,  xlim=[0, n+1], ylim=[0, n+.5], folder_name="Sortieralgorithmen/selection_sort", name="Selection Sort")
+    update_chart(data, i+1,  xlim=[0, n+1], ylim=[0, n+.5], folder_name="Sortieralgorithmen/selection_sort", name="Selectionsort")
 ```
 
 ## Merge Sort
@@ -286,7 +288,7 @@ def merge_sort(data):
 
 ```python
 for i, data in enumerate(merge_sort(dataset)):
-    update_chart(data, i+1,  xlim=[0, n+1], ylim=[0, n+.5], folder_name="Sortieralgorithmen/merge_sort", name="Merge Sort")
+    update_chart(data, i+1,  xlim=[0, n+1], ylim=[0, n+.5], folder_name="Sortieralgorithmen/merge_sort", name="Mergesort")
 ```
 
 ## Quick Sort
@@ -307,10 +309,6 @@ dataset = random.sample(range(1, n+1), n)
 
 ```python
 def quick_sort_visualized(arr):
-    """
-    Implementiert Quick Sort und gibt eine Liste von Arrays zurück,
-    die den Sortierverlauf darstellen (nach jeder Änderung).
-    """
     snapshots = [arr[:]]  # Initialer Snapshot vor Beginn der Sortierung
 
     def _quick_sort(arr, low, high):
@@ -339,7 +337,7 @@ def quick_sort_visualized(arr):
 
 ```python
 for i, data in enumerate(quick_sort_visualized(dataset)):
-    update_chart(data, i+1,  xlim=[0, n+1], ylim=[0, n+.5], folder_name="Sortieralgorithmen/quick_sort", name="Quick Sort")
+    update_chart(data, i+1,  xlim=[0, n+1], ylim=[0, n+.5], folder_name="Sortieralgorithmen/quick_sort", name="Quicksort")
 ```
 
 ## Heap Sort
@@ -359,9 +357,6 @@ dataset = random.sample(range(1, n+1), n)
 
 ```python
 def heapify(arr, n, i, snapshots):
-    """
-    Hilfsfunktion, um den Heap an der Position i wiederherzustellen.
-    """
     largest = i  # Größtes Element initialisieren
 
     # Überprüfen, ob das linke oder rechte Kind größer ist als die Wurzel
@@ -376,10 +371,6 @@ def heapify(arr, n, i, snapshots):
         heapify(arr, n, largest, snapshots)
 
 def heap_sort(arr):
-    """
-    Implementiert Heap Sort und gibt eine Liste von Arrays zurück,
-    die den Sortierverlauf darstellen.
-    """
     n = len(arr)
     snapshots = [arr.copy()]  # Initialen Zustand speichern
 
@@ -398,7 +389,7 @@ def heap_sort(arr):
 
 ```python
 for i, data in enumerate(heap_sort(dataset)):
-    update_chart(data, i+1, xlim=[0, n+1], ylim=[0, n+.5], folder_name="Sortieralgorithmen/heap_sort", name="Heap Sort")
+    update_chart(data, i+1, xlim=[0, n+1], ylim=[0, n+.5], folder_name="Sortieralgorithmen/heap_sort", name="Heapsort")
 ```
 
 ## Radix Sort
@@ -450,7 +441,7 @@ def radix_sort(arr):
 
 ```python
 for i, data in enumerate(radix_sort(dataset)):
-    update_chart(data, i+1,  xlim=[0, n+1], ylim=[0, n+.5], folder_name="Sortieralgorithmen/radix_sort", name="Radix Sort")
+    update_chart(data, i+1,  xlim=[0, n+1], ylim=[0, n+.5], folder_name="Sortieralgorithmen/radix_sort", name="Radixsort")
 ```
 
 ## Bogo Sort
@@ -472,6 +463,7 @@ dataset = random.sample(range(1, n+1), n)
 import random
 
 def bogo_sort(data):
+
     steps = []  # Initialisiere eine Liste, um die Schritte des Sortierprozesses zu speichern
 
     # Wiederhole den Prozess, bis das Array sortiert ist
@@ -487,7 +479,7 @@ def bogo_sort(data):
 
 ```python
 for i, data in enumerate(bogo_sort(dataset)):
-    update_chart(data, i+1,  xlim=[0, n+1], ylim=[0, n+.5], folder_name="Sortieralgorithmen/bogo_sort", name="Bogo Sort")
+    update_chart(data, i+1,  xlim=[0, n+1], ylim=[0, n+.5], folder_name="Sortieralgorithmen/bogo_sort", name="Bogosort")
 ```
 
 ## Sleep Sort
@@ -538,7 +530,7 @@ def sleep_sort(data):
 
 ```python
 for i, data in enumerate(sleep_sort(dataset)):
-    update_chart(data, i+1, xlim=[0, n+1], ylim=[0, n+.5], folder_name="Sortieralgorithmen/sleep_sort", name="Sleep Sort")
+    update_chart(data, i+1, xlim=[0, n+1], ylim=[0, n+.5], folder_name="Sortieralgorithmen/sleep_sort", name="Sleepsort")
 ```
 
 Es gibt noch viele weitere Sortieralgorithmen. Und den einen oder anderen werde ich vielleicht noch ergänzen.
@@ -549,13 +541,12 @@ Es gibt noch viele weitere Sortieralgorithmen. Und den einen oder anderen werde 
 ```python
 import os
 import imageio
+from PIL import Image
+import glob
 ```
 
 
 ```python
-from PIL import Image
-import os
-
 def calculate_duration(num_images, min_images=25, min_duration=50, max_duration=500, max_images=5000):
     if num_images < min_images:  # Wenn die Anzahl der Bilder kleiner als min_images ist
         duration = max_duration
@@ -587,4 +578,21 @@ for folder in folder_list:
     # Erstelle das GIF für jeden Ordner und speichere es im gleichen Ordner
     create_gif_from_pngs(os.path.join(folder_path, folder), os.path.join(folder_path, f"{folder}.gif"))
 
+```
+
+```python
+# Setze den Pfad zum Ordner "Sortieralgorithmen"
+folder_path = 'Sortieralgorithmen'
+
+# Suche alle PNG-Bilder in den Unterordnern
+png_files = sorted(glob.glob(os.path.join(folder_path, '**/*.png'), recursive=True))
+
+# Lese die Bilder
+images = [Image.open(png_file) for png_file in png_files]
+
+# Konvertiere die Bilder in RGB
+images = [image.convert('RGBA') for image in images]
+
+# Speichere die Bilder als GIF
+images[0].save('combined.gif', save_all=True, append_images=images[1:], optimize=False, duration=25, loop=0)
 ```
