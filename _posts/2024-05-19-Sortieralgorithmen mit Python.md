@@ -15,6 +15,7 @@ Neulich habe ich mich gefragt, wie genau eigentlich Sortieralgorithmen funktioni
 In diesem Beitrag werde ich verschiedene Sortieralgorithmen vorstellen und ihre Funktionsweise anhand von Python-Code und anschaulichen Grafiken erklären. Ich werde mir sowohl bekannte Algorithmen wie Bubblesort und Quicksort als auch ungewöhnlichere Vertreter wie Bogosort ansehen. Dabei werde ich auch auf die Geschwindigkeit der Algorithmen eingehen und herausfinden, welche sich für welche Anwendungsfälle eignen.
 
 ![PNGs of the different sorting algorithms](final.gif)
+_Alle Sortiervorgänge im Vergleich_
 
 ## Warum sind Sortieralgorithmen wichtig?
 Sortieralgorithmen spielen in der Informatik eine wichtige Rolle. Sie werden überall dort eingesetzt, wo Daten geordnet werden müssen, z.B. in Datenbanken, Suchmaschinen oder bei der Verarbeitung großer Datenmengen. Effiziente Sortieralgorithmen können die Geschwindigkeit von Anwendungen erheblich verbessern.
@@ -93,9 +94,8 @@ plt.show()
 ```
     
 ![Startkonfiguration](Start.png)
+_Startkonfiguration: Mit diesem Datensatz startet jeder Sortieralgorithmus_
     
-Und dann soll es auch schon losgehen. 
-
 # Sortieralgorithmen
 
 Im folgenden werde ich ein paar Sortieralgorithmen vorstellen, die so weit ich weiß, zu den gängigsten gehören. Ich werde zu jedem Algorithmus ein paar Worte verlieren und den Algorithmus anschließend implementieren. Da ich den Sortiervorgang auch visualisieren möchte, werde ich ein paar zusätzliche, für den Algorithmus unnötige Zeilen programmieren. Ich habe versucht das alles konsistent zu halten, aber weil dieser Beitrag mit einigen Pausen entstanden ist, gibt es hier und da vermutlich ein paar Ausreißer. 
@@ -109,7 +109,8 @@ Bubble Sort ist ein einfacher Vergleichssortieralgorithmus, der wiederholt benac
 * **Zeitkomplexität**: Die Zeitkomplexität von Bubble Sort ist im Durchschnitt und im schlimmsten Fall $O(n^2)$, wobei $n$ die Anzahl der Elemente im Array ist. Für große Datensätze kann Bubble Sort daher sehr ineffizient sein und wird in der Praxis oft durch schnellere Sortieralgorithmen wie Quick Sort, Merge Sort oder Heap Sort ersetzt.
 * **Besonderheiten**: Bubble Sort ist einfach zu verstehen und zu implementieren, aber ineffizient für große Datensätze. Er ist ein stabiler Sortieralgorithmus, d.h., die relative Reihenfolge gleicher Elemente bleibt erhalten.
 
-![Bubble Sort](bubble_sort.gif)
+![Bubblesort](bubble_sort.gif)
+_Bubblesort Sortiervorgang_
 
 Theoretich existiert der zu sortierende Datensatz bereits. Der Vollständigkeit halber, werde ich ihn dennoch jedes Mal erzeugen.
 
@@ -122,10 +123,28 @@ dataset = random.sample(range(1, n+1), n)
 Als nächstes definiere ich die Funktion mit dem Sortieralgorithmus.
 
 ```python
-# Bubble Sort Algorithmus
 def bubble_sort(data):
+    """
+    Implementiert den Bubble-Sort-Algorithmus und speichert Snapshots des Arrays nach jedem Swap. Dieser Algorithmus 
+    sortiert eine Liste von Zahlen, indem er wiederholt durch die Liste geht, vergleicht jedes Paar benachbarter 
+    Elemente und tauscht sie, wenn sie in der falschen Reihenfolge sind.
+
+    Args:
+        data (list): Die Liste von Zahlen, die sortiert werden soll.
+
+    Returns:
+        sorted_datasets (list): Eine Liste, die den Zustand der sortierten Liste nach jedem Swap enthält.
+    """
+
     def swap(i, j):
-        """Vertauscht die Elemente an den Positionen i und j."""
+        """
+        Hilfsfunktion für den Bubble-Sort-Algorithmus. Sie vertauscht die Elemente an den Positionen i und j.
+
+        Args:
+            i (int): Der Index des ersten Elements.
+            j (int): Der Index des zweiten Elements.
+        """
+
         data[i], data[j] = data[j], data[i]  # Tausche die Elemente an den Positionen i und j
 
     sorted_datasets = []  # Initialisiere eine leere Liste, um die sortierten Datensätze zu speichern
@@ -138,7 +157,7 @@ def bubble_sort(data):
     return sorted_datasets  # Gib die Liste der sortierten Datensätze zurück
 ```
 
-Danach rufe ich, und das wird sich an alle Sortieralgorithmen in meinem Beitrag anschließen, den Sortieralgorithmus auf und rufe für jeden Sortierschritt die Visualisierungsfunktion auf und speichere den Plot als PNG ab. Am Ende dieses Beitrags erstelle ich dann, ebenfalls mit Python, ein GIF von jedem Sortiervorgang. Das esrte Gif ist oben bereits zu sehen.
+Im Anschluss an die Definition der Sortieralgorithmen in diesem Beitrag, wird jeder dieser Algorithmen ausgeführt. Während jeder Sortierschritt durchlaufen wird, wird eine Visualisierungsfunktion aufgerufen, die den aktuellen Zustand des Sortierprozesses als PNG-Bild speichert. Am Ende des Beitrags wird aus diesen Bildern ein GIF für jeden Sortiervorgang erstellt, ebenfalls mit Python. Das erste dieser GIFs ist bereits oben im Beitrag zu sehen.
 
 ```python
 for i, data in enumerate(bubble_sort(dataset)):
@@ -156,7 +175,8 @@ Insertion Sort baut das sortierte Array schrittweise auf, indem er jedes Element
 * **Zeitkomplexität**: $O(n²)$ im Durchschnitt und im schlimmsten Fall. Allerdings ist Insertion Sort effizienter als Bubble Sort, wenn das Array bereits teilweise sortiert ist. In diesem Fall muss jedes Element nur eine kurze Distanz bewegt werden, um an die richtige Position zu gelangen. Daher kann die Zeitkomplexität von Insertion Sort in solchen Fällen nahe an $O(n)$ liegen. Das gilt nur für teilweise sortierte Arrays. Für zufällig sortierte Arrays ist die Zeitkomplexität von Insertion Sort immer noch $O(n^2)$.
 * **Besonderheiten**: Insertion Sort ist ein In-place-Algorithmus, d.h., er benötigt keinen zusätzlichen Speicherplatz. Er ist einfach zu implementieren und effizient für kleine Datensätze oder fast sortierte Daten.
 
-![Insertion Sort](insertion_sort.gif)
+![Insertionsort](insertion_sort.gif)
+_Insertionsort Sortiervorgang_
 
 ```python
 # Erzeuge einen zufälligen Datensatz
@@ -165,10 +185,29 @@ dataset = random.sample(range(1, n+1), n)
 ```
 
 ```python
-# Insertion Sort Algorithmus
 def insertion_sort(data):
+    """
+    Implementiert den Insertion-Sort-Algorithmus und speichert Snapshots des Arrays nach jedem Insert. Dieser Algorithmus 
+    sortiert eine Liste von Zahlen, indem er jedes Element an der richtigen Position in der bereits sortierten Teilmenge 
+    der Liste einfügt.
+
+    Args:
+        data (list): Die Liste von Zahlen, die sortiert werden soll.
+
+    Returns:
+        sorted_datasets (list): Eine Liste, die den Zustand der sortierten Liste nach jedem Insert enthält.
+    """
+
     def insert(j, key):
-        """Verschiebt Elemente nach rechts und fügt das Schlüsselelement an der richtigen Position ein."""
+        """
+        Hilfsfunktion für den Insertion-Sort-Algorithmus. Sie verschiebt Elemente nach rechts und fügt das 
+        Schlüsselelement an der richtigen Position ein.
+
+        Args:
+            j (int): Der Index, an dem das Schlüsselelement eingefügt werden soll.
+            key (int): Das Schlüsselelement, das eingefügt werden soll.
+        """
+
         while j >= 0 and data[j] > key:  # Solange wir nicht am Anfang des Arrays sind und das aktuelle Element größer als das Schlüsselelement ist
             data[j+1] = data[j]  # Verschiebe das aktuelle Element nach rechts
             j -= 1  # Gehe zum nächsten Element auf der linken Seite
@@ -197,6 +236,7 @@ Selection Sort findet in jedem Durchlauf das kleinste Element im unsortierten Te
 * **Besonderheiten**: Selection Sort ist einfach zu verstehen und implementieren, aber es ist nicht effizient für große Datensätze. Ein Vorteil von Selection Sort gegenüber einigen anderen Sortieralgorithmen wie Bubble Sort ist, dass es die Anzahl der Vertauschungen minimiert, was nützlich sein kann, wenn das Vertauschen von Elementen eine teure Operation ist.
 
 ![Selection Sort](selection_sort.gif)
+_Selectionsort Sortiervorgang_
 
 ```python
 # Erzeuge einen zufälligen Datensatz
@@ -207,8 +247,30 @@ dataset = random.sample(range(1, n+1), n)
 
 ```python
 def selection_sort(data):
+    """
+    Implementiert den Selection-Sort-Algorithmus und speichert Snapshots des Arrays nach jedem Swap. Dieser Algorithmus 
+    sortiert eine Liste von Zahlen, indem er das kleinste Element findet und es mit dem ersten Element tauscht, 
+    dann das zweitkleinste Element findet und es mit dem zweiten Element tauscht, und so weiter.
+
+    Args:
+        data (list): Die Liste von Zahlen, die sortiert werden soll.
+
+    Returns:
+        sorted_datasets (list): Eine Liste, die den Zustand der sortierten Liste nach jedem Swap enthält.
+    """
+
     def find_min_index(start_index):
-        """Findet den Index des kleinsten Elements ab dem gegebenen Startindex."""
+        """
+        Hilfsfunktion für den Selection-Sort-Algorithmus. Sie findet den Index des kleinsten Elements ab dem 
+        gegebenen Startindex.
+
+        Args:
+            start_index (int): Der Startindex für die Suche.
+
+        Returns:
+            min_index (int): Der Index des kleinsten Elements ab dem Startindex.
+        """
+
         min_index = start_index
         for j in range(start_index+1, len(data)):
             if data[j] < data[min_index]:
@@ -237,6 +299,7 @@ Merge Sort ist ein "Teile und Herrsche"-Algorithmus, der das Array rekursiv in z
 * **Besonderheiten**: Merge Sort ist ein stabiler Sortieralgorithmus, was bedeutet, dass gleichwertige Elemente in der sortierten Ausgabe die gleiche relative Reihenfolge haben wie in der Eingabe. Ein Nachteil von Merge Sort ist, dass er zusätzlichen Speicherplatz benötigt, um die beiden Hälften beim Zusammenführen zu speichern.
 
 ![Merge Sort](merge_sort.gif)
+_Mergesort Sortiervorgang_
 
 ```python
 # Erzeuge einen zufälligen Datensatz
@@ -249,9 +312,34 @@ dataset = random.sample(range(1, n+1), n)
 import itertools
 
 def merge_sort(data):
+    """
+    Implementiert den Merge-Sort-Algorithmus und speichert Snapshots des Arrays nach jedem Merge. Dieser Algorithmus 
+    sortiert eine Liste von Zahlen, indem er sie in zwei Hälften teilt, jede Hälfte sortiert und dann die sortierten 
+    Hälften zusammenführt.
+
+    Args:
+        data (list): Die Liste von Zahlen, die sortiert werden soll.
+
+    Returns:
+        steps (list): Eine Liste, die den Zustand der sortierten Liste nach jedem Merge enthält.
+    """
+
     steps = []  # Liste zur Speicherung der Zwischenschritte
 
     def merge(left, right, start):
+        """
+        Hilfsfunktion für den Merge-Sort-Algorithmus. Sie führt zwei sortierte Listen zusammen und speichert 
+        Snapshots des Arrays nach jedem Merge.
+
+        Args:
+            left (list): Die linke sortierte Liste.
+            right (list): Die rechte sortierte Liste.
+            start (int): Der Startindex für das Zusammenführen im ursprünglichen Array.
+
+        Returns:
+            result (list): Die zusammengeführte und sortierte Liste.
+        """
+
         result = []  # Ergebnisliste
         i = j = 0  # Initialisiere die Indizes für die linke und rechte Liste
         # Durchlaufe beide Listen und füge das kleinere Element zur Ergebnisliste hinzu
@@ -275,6 +363,18 @@ def merge_sort(data):
         return result  # Gib die sortierte Liste zurück
 
     def sort(data, start=0):
+        """
+        Hilfsfunktion für den Merge-Sort-Algorithmus. Sie teilt das Array in zwei Hälften, sortiert jede Hälfte 
+        und führt sie dann zusammen.
+
+        Args:
+            data (list): Das Array, das sortiert werden soll.
+            start (int): Der Startindex für das Sortieren im ursprünglichen Array.
+
+        Returns:
+            list: Die sortierte Liste.
+        """
+
         if len(data) <= 1:  # Wenn die Liste nur ein Element enthält, ist sie bereits sortiert
             return data
         mid = len(data) // 2  # Finde den mittleren Index
@@ -300,7 +400,8 @@ Quick Sort ist ein weiterer "Teile und Herrsche"-Algorithmus. Er wählt ein Elem
 * **Zeitkomplexität**: Die durchschnittliche Zeitkomplexität von Quick Sort ist $O(n \cdot log(n))$, aber im schlimmsten Fall (wenn das kleinste oder größte Element als Pivot gewählt wird) kann sie auf $O(n^2)$ ansteigen.
 * **Besonderheiten**: Quick Sort ist ein In-place-Algorithmus, was bedeutet, dass er keinen zusätzlichen Speicherplatz benötigt. Er ist in der Praxis oft schneller als Merge Sort, obwohl seine Zeitkomplexität im schlechtesten Fall höher ist. Ein Nachteil von Quick Sort ist, dass er nicht stabil ist, d.h., gleichwertige Elemente können ihre relative Reihenfolge während der Sortierung ändern.
 
-![Quick Sort](quick_sort.gif)
+![Quicksort](quick_sort.gif)
+_Quicksort Sortiervorgang_
 
 ```python
 # Erzeuge einen zufälligen Datensatz
@@ -311,9 +412,32 @@ dataset = random.sample(range(1, n+1), n)
 
 ```python
 def quick_sort_visualized(arr):
+    """
+    Implementiert den Quick-Sort-Algorithmus und speichert Snapshots des Arrays nach jedem Swap. Dieser Algorithmus 
+    sortiert eine Liste von Zahlen, indem er ein "Pivot"-Element auswählt und alle Elemente, die kleiner sind, 
+    links vom Pivot und alle Elemente, die größer sind, rechts vom Pivot anordnet. Dieser Prozess wird dann 
+    rekursiv auf die linke und rechte Hälfte des Arrays angewendet.
+
+    Args:
+        arr (list): Die Liste von Zahlen, die sortiert werden soll.
+
+    Returns:
+        snapshots (list): Eine Liste, die den Zustand der sortierten Liste nach jedem Swap enthält.
+    """
+
     snapshots = [arr[:]]  # Initialer Snapshot vor Beginn der Sortierung
 
     def _quick_sort(arr, low, high):
+        """
+        Hilfsfunktion für den Quick-Sort-Algorithmus. Sie führt den eigentlichen Sortierprozess durch und ruft 
+        sich selbst rekursiv auf die linke und rechte Hälfte des Arrays auf.
+
+        Args:
+            arr (list): Das Array, das sortiert werden soll.
+            low (int): Der Startindex des Teils des Arrays, der sortiert werden soll.
+            high (int): Der Endindex des Teils des Arrays, der sortiert werden soll.
+        """
+
         if low < high:
             pivot_index = partition(arr, low, high)
             snapshots.append(arr[:])  # Snapshot nach jeder Swap-Operation
@@ -321,6 +445,19 @@ def quick_sort_visualized(arr):
             _quick_sort(arr, pivot_index + 1, high)
 
     def partition(arr, low, high):
+        """
+        Hilfsfunktion für den Quick-Sort-Algorithmus. Sie wählt ein Pivot-Element und ordnet alle Elemente, die 
+        kleiner sind, links vom Pivot und alle Elemente, die größer sind, rechts vom Pivot an.
+
+        Args:
+            arr (list): Das Array, das sortiert werden soll.
+            low (int): Der Startindex des Teils des Arrays, der sortiert werden soll.
+            high (int): Der Endindex des Teils des Arrays, der sortiert werden soll.
+
+        Returns:
+            int: Der Index des Pivot-Elements nach der Partitionierung.
+        """
+
         pivot = arr[high]
         i = low - 1
         for j in range(low, high):
@@ -349,7 +486,8 @@ Heap Sort nutzt eine spezielle Datenstruktur namens Heap, um das Array zu sortie
 * **Zeitkomplexität**: Die Zeitkomplexität von Heap Sort ist $O(n \cdot log(n))$ in allen Fällen. Dies liegt daran, dass das Erstellen des Heaps $O(n)$ Zeit benötigt und das Entfernen jedes Elements $O(log(n))$ Zeit benötigt.
 * **Besonderheiten**: Heap Sort ist ein In-place-Algorithmus, was bedeutet, dass er keinen zusätzlichen Speicherplatz benötigt. Er garantiert eine Zeitkomplexität von $O(n \cdot log(n))$, unabhängig von der Anordnung der Elemente. Ein Nachteil von Heap Sort ist, dass er komplexer zu implementieren ist als andere Sortieralgorithmen wie Quick Sort oder Merge Sort.
 
-![Heap Sort](heap_sort.gif)
+![Heapsort](heap_sort.gif)
+_Heapsort Sortiervorgang_
 
 ```python
 # Erzeuge einen zufälligen Datensatz
@@ -359,20 +497,30 @@ dataset = random.sample(range(1, n+1), n)
 
 ```python
 def heapify(arr, n, i, snapshots):
-    largest = i  # Größtes Element initialisieren
+    """
+    Hilfsfunktion für den Heap-Sort-Algorithmus. Sie nimmt ein Array und verwandelt es in einen Heap, indem sie 
+    sicherstellt, dass das Element an der Position i größer ist als seine Kinder. Wenn dies nicht der Fall ist, 
+    wird das Element mit dem größten Kind getauscht und der Prozess wird rekursiv fortgesetzt.
 
-    # Überprüfen, ob das linke oder rechte Kind größer ist als die Wurzel
-    for j in [2 * i + 1, 2 * i + 2]:  # j ist das linke und dann das rechte Kind
-        if j < n and arr[largest] < arr[j]:
-            largest = j
-
-    # Wenn das größte Element nicht die Wurzel ist, tauschen und rekursiv heapify aufrufen
-    if largest != i:
-        arr[i], arr[largest] = arr[largest], arr[i]
-        snapshots.append(arr.copy())  # Snapshot speichern
-        heapify(arr, n, largest, snapshots)
+    Args:
+        arr (list): Das Array, das in einen Heap umgewandelt werden soll.
+        n (int): Die Anzahl der Elemente im Array.
+        i (int): Der Index des Elements, das "heapified" werden soll.
+        snapshots (list): Eine Liste, die den Zustand des Arrays nach jedem Schritt speichert.
+    """
 
 def heap_sort(arr):
+    """
+    Implementiert den Heap-Sort-Algorithmus. Dieser Algorithmus sortiert eine Liste von Zahlen, indem er sie 
+    zuerst in einen Heap umwandelt und dann die Elemente des Heaps in absteigender Reihenfolge entfernt und 
+    an das Ende der Liste anfügt.
+
+    Args:
+        arr (list): Die Liste von Zahlen, die sortiert werden soll.
+
+    Returns:
+        snapshots (list): Eine Liste, die den Zustand der sortierten Liste nach jedem Schritt enthält.
+    """
     n = len(arr)
     snapshots = [arr.copy()]  # Initialen Zustand speichern
 
@@ -401,7 +549,8 @@ Radix Sort sortiert Zahlen nach ihren einzelnen Ziffern, beginnend mit der niedr
 * **Zeitkomplexität**: Die Zeitkomplexität von Radix Sort ist $O(nk)$, wobei n die Anzahl der Elemente und k die maximale Anzahl von Stellen ist. Dies macht Radix Sort sehr effizient, wenn die Anzahl der Ziffern begrenzt ist.
 * **Besonderheiten**: Radix Sort ist besonders effizient für ganze Zahlen mit begrenzter Stellenanzahl. Es ist kein vergleichsbasierter Algorithmus, sondern nutzt die Verteilung der Ziffern, um die Zahlen zu sortieren. Dies unterscheidet Radix Sort von vielen anderen Sortieralgorithmen, die auf Vergleichen basieren.
 
-![Radix Sort](radix_sort.gif)
+![Radixsort](radix_sort.gif)
+_Radixsort Sortiervorgang_
 
 ```python
 # Erzeuge einen zufälligen Datensatz
@@ -413,15 +562,32 @@ dataset = random.sample(range(1, n+1), n)
 ```python
 def flatten_and_fill(buckets, arr_length):
     """
-    Flacht die Buckets ab und füllt fehlende Werte mit Nullen auf.
+    Flacht eine Liste von Listen (Buckets) ab und füllt die resultierende Liste mit Nullen auf, bis sie die 
+    angegebene Länge erreicht. Diese Funktion wird in Sortieralgorithmen verwendet, die Buckets verwenden, 
+    um Elemente zu sortieren, wie z.B. der Radix-Sort-Algorithmus.
+
+    Args:
+        buckets (list): Eine Liste von Listen, die abgeflacht werden soll.
+        arr_length (int): Die gewünschte Länge der resultierenden Liste.
+
+    Returns:
+        list: Eine abgeflachte Liste, die mit Nullen aufgefüllt ist, bis sie die angegebene Länge erreicht.
     """
     flattened = [item for sublist in buckets for item in sublist]
     return flattened + [0] * (arr_length - len(flattened))
 
 def radix_sort(arr):
     """
-    Implementiert den Radix Sort Algorithmus und gibt eine Liste von Arrays zurück,
-    die jeden einzelnen Sortierschritt darstellen.
+    Implementiert den Radix-Sort-Algorithmus. Dieser Algorithmus sortiert eine Liste von Zahlen, indem er sie 
+    basierend auf den einzelnen Ziffern von links nach rechts sortiert. Der Algorithmus verwendet eine 
+    Bucket-Sort-Strategie, um die Zahlen in "Eimer" zu sortieren, basierend auf der aktuellen Ziffer, die 
+    sortiert wird. 
+
+    Args:
+        arr (list): Die Liste von Zahlen, die sortiert werden soll.
+
+    Returns:
+        snapshots (list): Eine Liste von Listen, die den Zustand der sortierten Liste nach jedem Schritt enthält.
     """
     max_value = max(arr)
     exp = 1
@@ -453,7 +619,8 @@ Bogo Sort ist ein ineffizienter und nicht-deterministischer Sortieralgorithmus. 
 * **Zeitkomplexität**: Die Zeitkomplexität von Bogo Sort ist im Durchschnitt und im schlimmsten Fall unendlich, da es keine Garantie dafür gibt, dass der Algorithmus jemals endet. Dies macht Bogo Sort extrem ineffizient.
 * **Besonderheiten**: Bogo Sort ist ein Beispiel für einen extrem ineffizienten und unpraktischen Sortieralgorithmus. Er wird oft als humorvolles Beispiel für einen schlechten Algorithmus verwendet.
 
-![Bogo Sort](bogo_sort.gif)
+![Bogosort](bogo_sort.gif)
+_Bogosort Sortiervorgang_
 
 ```python
 # Erzeuge einen zufälligen Datensatz
@@ -462,10 +629,18 @@ dataset = random.sample(range(1, n+1), n)
 ```
 
 ```python
-import random
-
 def bogo_sort(data):
+    """
+    Implementiert den Bogo-Sort-Algorithmus. Dieser Algorithmus sortiert eine Liste durch wiederholtes zufälliges 
+    Mischen der Elemente, bis die Liste sortiert ist. Es ist ein sehr ineffizienter Sortieralgorithmus mit einer 
+    durchschnittlichen Zeitkomplexität von O((n+1)!), wobei n die Anzahl der Elemente in der Liste ist.
 
+    Args:
+        data (list): Die Liste von Zahlen, die sortiert werden soll.
+
+    Returns:
+        steps (list): Eine Liste, die den Zustand der sortierten Liste nach jedem Schritt enthält.
+    """
     steps = []  # Initialisiere eine Liste, um die Schritte des Sortierprozesses zu speichern
 
     # Wiederhole den Prozess, bis das Array sortiert ist
@@ -492,7 +667,8 @@ Sleep Sort ist ein unkonventioneller und ineffizienter Sortieralgorithmus, der a
 * **Besonderheiten**: Sleep Sort ist nicht deterministisch, da die Reihenfolge der Ausgabe bei gleichen Elementen variieren kann. Es ist eher eine Kuriosität und nicht für den praktischen Einsatz gedacht.
 
 
-![Sleep Sort](sleep_sort.gif)
+![Sleepsort](sleep_sort.gif)
+_Sleepsort Sortiervorgang_
 
 ```python
 # Erzeuge einen zufälligen Datensatz
@@ -506,6 +682,17 @@ import time
 import threading
 
 def sleep_sort(data):
+    """
+    Sortiert eine Liste von Zahlen mit dem Sleep-Sort-Algorithmus. Dieser Algorithmus verwendet Multithreading, 
+    um die Zahlen zu sortieren. Jede Zahl in der Liste wird einem separaten Thread zugewiesen. Jeder Thread 
+    wartet eine Zeit proportional zum Wert der Zahl, bevor er die Zahl in die sortierte Liste einfügt.
+
+    Args:
+        data (list): Die Liste von Zahlen, die sortiert werden soll.
+
+    Returns:
+        all_steps (list): Eine Liste, die den Zustand der sortierten Liste nach jedem Schritt enthält.
+    """
     sorted_data = [0] * len(data)  # Initialisiere sorted_data mit Nullen
     all_steps = []  # Initialisiere die Liste, um alle Schritte zu speichern
     index = 0  # Initialisiere den Index
@@ -538,63 +725,96 @@ for i, data in enumerate(sleep_sort(dataset)):
 Es gibt noch viele weitere Sortieralgorithmen. Und den einen oder anderen werde ich vielleicht noch ergänzen.
 
 # Gifs erstellen
-
+In den folgenden Zeilen findet sich der Code, mit dem ich dem die Gifs erstellt habe. Natürlich lässt sich vieles sicher eleganter und schlanker programmieren, aber ich halte es so noch für leserlich.
 
 ```python
-import os
-import imageio
-from PIL import Image
-import glob
+def get_subfolders(folder_path):
+    """
+    Retrieves the subfolders in the specified folder.
+
+    Parameters:
+    folder_path (str): The path to the folder from which to retrieve the subfolders.
+
+    Returns:
+    list: A list of paths to the subfolders in the specified folder.
+    """
+    return [f.path for f in os.scandir(folder_path) if f.is_dir()]
 ```
 
 
 ```python
-def calculate_duration(num_images, min_images=25, min_duration=50, max_duration=500, max_images=5000):
-    if num_images < min_images:  # Wenn die Anzahl der Bilder kleiner als min_images ist
-        duration = max_duration
-    elif num_images >= max_images:  # Wenn die Anzahl der Bilder größer oder gleich max_images ist
-        duration = min_duration
-    else:  # Wenn die Anzahl der Bilder zwischen min_images und max_images liegt
-        slope = (min_duration - max_duration) / (max_images - min_duration)
-        duration = max_duration + slope * (num_images - min_duration)
-    return duration  # Gib die berechnete Dauer zurück
+def get_images(subfolder, max_image_width, max_image_height):
+    """
+    Retrieves and resizes images from a specified subfolder.
 
-def create_gif_from_pngs(folder_path, output_path):
-    # Erstelle eine Liste von Bildern aus den PNG-Dateien im angegebenen Ordner
-    images = [Image.open(os.path.join(folder_path, filename)) for filename in sorted(os.listdir(folder_path)) if filename.endswith(".png")]
+    Parameters:
+    subfolder (str): The path to the subfolder containing the images.
+    max_image_width (int): The maximum width to which the images will be resized.
+    max_image_height (int): The maximum height to which the images will be resized.
 
-    # Berechne die Dauer für das GIF
-    duration = calculate_duration(len(images), min_images=5, min_duration=100, max_duration=200, max_images=5000)
-
-    # Speichere die Bilder als animiertes GIF
-    images[0].save(output_path, save_all=True, append_images=images[1:], loop=0, duration=duration)
+    Returns:
+    list: A list of numpy arrays representing the resized images.
+    """
+    png_files = sorted(glob.glob(os.path.join(subfolder, '*.png')))
+    return [np.array(Image.fromarray(imageio.imread(png_file)[..., :3]).resize((max_image_width, max_image_height))) for png_file in png_files]
 ```
 
 
 ```python
-folder_path = "Sortieralgorithmen"
-# Erstelle eine Liste von Ordnern im angegebenen Pfad
-folder_list = [folder for folder in os.listdir(folder_path) if os.path.isdir(os.path.join(folder_path, folder))]
+def create_final_gif_image(i, gif_images, num_gifs_down, num_gifs_across, max_image_height, max_image_width):
+    """
+    Creates a single frame for the final GIF.
 
-for folder in folder_list:
-    # Erstelle das GIF für jeden Ordner und speichere es im gleichen Ordner
-    create_gif_from_pngs(os.path.join(folder_path, folder), os.path.join(folder_path, f"{folder}.gif"))
+    Parameters:
+    i (int): The index of the current frame.
+    gif_images (list): A list of lists containing the images for each GIF.
+    num_gifs_down (int): The number of GIFs to be arranged vertically in the final GIF.
+    num_gifs_across (int): The number of GIFs to be arranged horizontally in the final GIF.
+    max_image_height (int): The maximum height of the images to be included in the GIF.
+    max_image_width (int): The maximum width of the images to be included in the GIF.
 
+    Returns:
+    final_gif_image (numpy.ndarray): A 3D numpy array representing the final GIF image for the current frame.
+    """
+    final_gif_image = np.zeros((max_image_height * num_gifs_down, max_image_width * num_gifs_across, 3), dtype=np.uint8)
+    for j in range(num_gifs_down):
+        for k in range(num_gifs_across):
+            images = gif_images[j * num_gifs_across + k]
+            if i < len(images):
+                final_gif_image[j * max_image_height:(j + 1) * max_image_height, k * max_image_width:(k + 1) * max_image_width] = images[i]
+            else:
+                final_gif_image[j * max_image_height:(j + 1) * max_image_height, k * max_image_width:(k + 1) * max_image_width] = images[-1]
+    return final_gif_image
 ```
 
 ```python
-# Setze den Pfad zum Ordner "Sortieralgorithmen"
-folder_path = 'Sortieralgorithmen'
+def create_final_gif(folder_path, num_gifs_across, num_gifs_down, max_image_width, max_image_height, output_file):
+    """
+    Creates a final GIF from images in the subfolders of the given folder.
 
-# Suche alle PNG-Bilder in den Unterordnern
-png_files = sorted(glob.glob(os.path.join(folder_path, '**/*.png'), recursive=True))
+    Parameters:
+    folder_path (str): The path to the folder containing the subfolders with images.
+    num_gifs_across (int): The number of GIFs to be arranged horizontally in the final GIF.
+    num_gifs_down (int): The number of GIFs to be arranged vertically in the final GIF.
+    max_image_width (int): The maximum width of the images to be included in the GIF.
+    max_image_height (int): The maximum height of the images to be included in the GIF.
+    output_file (str): The path to the output file where the final GIF will be saved.
 
-# Lese die Bilder
-images = [Image.open(png_file) for png_file in png_files]
+    Returns:
+    None
+    """
+    subfolders = get_subfolders(folder_path)
+    gif_images = [get_images(subfolder, max_image_width, max_image_height) for subfolder in subfolders]
+    final_gif_images = [create_final_gif_image(i, gif_images, num_gifs_down, num_gifs_across, max_image_height, max_image_width) for i in range(max(len(images) for images in gif_images))]
+    imageio.mimsave(output_file, final_gif_images, duration=0.5)
+```
 
-# Konvertiere die Bilder in RGB
-images = [image.convert('RGBA') for image in images]
-
-# Speichere die Bilder als GIF
-images[0].save('combined.gif', save_all=True, append_images=images[1:], optimize=False, duration=25, loop=0)
+```python
+create_final_gif(
+    folder_path="Sortieralgorithmen", 
+    num_gifs_across=3,
+    num_gifs_down=3, 
+    max_image_width=200, 
+    max_image_height=200, 
+    output_file='final.gif')
 ```
