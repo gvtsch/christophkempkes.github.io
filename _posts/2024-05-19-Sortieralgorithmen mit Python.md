@@ -1,6 +1,8 @@
 ---
 title: Sortieralgorithmen mit Python
 date: 2024-05-19 11:00:00 +/-TTTT
+description: In diesem Beitrag trage ich ein paar Sortieralgorithmen zusammen, programmiere sie in Python und stelle sie grafisch dar.
+image: Preview.png
 categories: [PROGRAMMING]
 tags: [Python]     # TAG names should always be lowercase
 toc: true
@@ -8,11 +10,11 @@ img_path: /assets/images/2024-05-19-Sortieralgorithmen_files/
 ---
 
 # Sortieralgorithmen in Python: Eine visuelle Erkundung
-Neulich habe ich mich gefragt, wie eigentlich Sortieralgorithmen funktioniert. Das hat mich dazu gebracht, mich näher mit eben diesen zu beschäftigen. Dabei habe ich viel Interessantes gelernt, das ich gerne mit dir teilen möchte.
-
-![PNGs of the different sorting algorithms](final.gif)
+Neulich habe ich mich gefragt, wie genau eigentlich Sortieralgorithmen funktionieren. Das hat mich dazu gebracht, mich näher mit eben diesen zu beschäftigen. Dabei habe ich viel Interessantes gelernt, das ich gerne mit dir teilen möchte.
 
 In diesem Beitrag werde ich verschiedene Sortieralgorithmen vorstellen und ihre Funktionsweise anhand von Python-Code und anschaulichen Grafiken erklären. Ich werde mir sowohl bekannte Algorithmen wie Bubblesort und Quicksort als auch ungewöhnlichere Vertreter wie Bogosort ansehen. Dabei werde ich auch auf die Geschwindigkeit der Algorithmen eingehen und herausfinden, welche sich für welche Anwendungsfälle eignen.
+
+![PNGs of the different sorting algorithms](final.gif)
 
 ## Warum sind Sortieralgorithmen wichtig?
 Sortieralgorithmen spielen in der Informatik eine wichtige Rolle. Sie werden überall dort eingesetzt, wo Daten geordnet werden müssen, z.B. in Datenbanken, Suchmaschinen oder bei der Verarbeitung großer Datenmengen. Effiziente Sortieralgorithmen können die Geschwindigkeit von Anwendungen erheblich verbessern.
