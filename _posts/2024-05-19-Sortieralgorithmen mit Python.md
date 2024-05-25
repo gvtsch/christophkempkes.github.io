@@ -725,6 +725,7 @@ for i, data in enumerate(sleep_sort(dataset)):
 Es gibt noch viele weitere Sortieralgorithmen. Und den einen oder anderen werde ich vielleicht noch ergänzen.
 
 # Gifs erstellen
+
 In den folgenden Zeilen findet sich der Code, mit dem ich dem die Gifs erstellt habe. Natürlich lässt sich vieles sicher eleganter und schlanker programmieren, aber ich halte es so noch für leserlich.
 
 ```python
