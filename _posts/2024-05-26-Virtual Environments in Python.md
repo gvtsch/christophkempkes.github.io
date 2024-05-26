@@ -2,7 +2,7 @@
 title: Virtual Environments in Python
 date: 2024-05-26 09:31:00 +/-TTTT
 description: In diesem Beitrag geht es darum, wie man die in Python (ab Python $3.3$) integrierten virtuellen Umgebungen nutzen kann. 
-image: 
+image: https://www.dataquest.io/wp-content/uploads/2022/01/python-virtual-envs1-1024x576.webp
 categories: [PROGRAMMING]
 tags: [Python]     # TAG names should always be lowercase
 toc: true
@@ -14,6 +14,9 @@ In diesem Beitrag geht es darum, wie man die in Python (ab Python $3.3$) integri
 
 **Warum überhaupt virtuelle Umgebungen nutzen?**
 Es geht unter Anderem darum, einen Ort zu haben, an dem man projekt-spezifische Pakete installieren kann. Das bezieht sich nicht nur auf die Pakete an sich, sondern auch auf deren Versionen. Nehmen wir z.B. mal an, du hast ein Projekt, welches eine spezielle, vielleicht veraltete Version eines Pakets benötigt. Wenn du nun nur eine einzelne Entwicklungsumgebung hast, wird es dir nicht möglich sein, gleichzeitig eine aktuelle Version diese Paketes für ein anderes Projekt zu nutzen. Das ist einer der Gründe, warum jedes Projekt seine eigene Umgebung mit den eigenen Paketen haben sollte.
+
+![Bild mit drei virtuellen Entwicklungsumgebungen](https://www.dataquest.io/wp-content/uploads/2022/01/python-virtual-envs1-1024x576.webp)
+_Darstellung von drei voneinander unabhängigen virtuellen Umgebungen. [Bildquelle](https://www.dataquest.io/blog/a-complete-guide-to-python-virtual-environments/)_
 
 **Warum venv?**
 Es gibt zahlreiche andere Tools, um Environments zu verwalten. **venv** kommt allerdings mit der Standardinstallation von Python daher. Nur um eine, die wohl bekanntests, Alternative zu nennen: Anaconda.
