@@ -1,6 +1,7 @@
 ---
 title: Supervised, Unsupervised und Reinforcement Learning — Eine Übersicht
 date: 2023-01-01 13:13:00 +/-TTTT
+image: https://miro.medium.com/v2/resize:fit:1100/format:webp/1*IthQqaRtyKkiZNm9PONKyw.png
 categories: [MACHINE LEARNING]
 tags: [ML, DL, AI, Medium]     # TAG names should always be lowercase
 toc: true

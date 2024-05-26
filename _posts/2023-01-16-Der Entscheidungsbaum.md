@@ -1,6 +1,7 @@
 ---
 title: Der Entscheidungsbaum
 date: 2023-01-16 13:00:00 +/-TTTT
+image: https://cdn-images-1.medium.com/v2/resize:fit:800/1*SYOAspZ_sVzD0oNpCeflTA.png
 categories: [MACHINE LEARNING]
 tags: [ML, DL, AI, Medium]     # TAG names should always be lowercase
 toc: true

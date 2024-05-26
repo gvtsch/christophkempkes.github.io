@@ -1,6 +1,7 @@
 ---
 title: Von Perzeptron bis Reinforcement Learning
 date: 2022-12-26 13:13:00 +/-TTTT
+image: https://miro.medium.com/v2/resize:fit:1100/format:webp/1*BlpCbI_b-wzHVlW3IpHDkA.png
 categories: [MACHINE LEARNING]
 tags: [ML, DL, AI, Medium]     # TAG names should always be lowercase
 toc: true

@@ -19,7 +19,7 @@ Bei einem Random Forest handelt es sich um mehrere unkorrelierte Entscheidungsb�
 * Ein **Ensemble Modell** ist eine Methode des Maschinellen Lernens, bei der mehrere Modelle zusammengeführt werden, um die Vorhersagegenauigkeit zu erhöhen.
 
 ![](https://miro.medium.com/v2/resize:fit:720/format:webp/1*PuENdSyzCsYguK3XGNsg1g.png)
-*Ensemble Model*
+_Ensemble Model_
 
 Im obigen Bild sind drei Entscheidungsbäume des programmierten Random Forest dargestellt. Der Quellcode für den Random Forest folgt im nächsten Abschnitt.
 
