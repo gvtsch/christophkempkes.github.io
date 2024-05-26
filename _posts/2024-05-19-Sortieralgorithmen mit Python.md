@@ -9,7 +9,6 @@ toc: true
 img_path: /assets/images/2024-05-19-Sortieralgorithmen_files/
 ---
 
-# Sortieralgorithmen in Python: Eine visuelle Erkundung
 Neulich habe ich mich gefragt, wie genau eigentlich Sortieralgorithmen funktionieren. Das hat mich dazu gebracht, mich näher mit eben diesen zu beschäftigen. Dabei habe ich viel Interessantes gelernt, das ich gerne mit dir teilen möchte.
 
 In diesem Beitrag werde ich verschiedene Sortieralgorithmen vorstellen und ihre Funktionsweise anhand von Python-Code und anschaulichen Grafiken erklären. Ich werde mir sowohl bekannte Algorithmen wie Bubblesort und Quicksort als auch ungewöhnlichere Vertreter wie Bogosort ansehen. Dabei werde ich auch auf die Geschwindigkeit der Algorithmen eingehen und herausfinden, welche sich für welche Anwendungsfälle eignen.

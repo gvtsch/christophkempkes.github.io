@@ -7,9 +7,6 @@ toc: true
 img_path: /assets/images/
 ---
 
-# Was machen eigentlich Pip und Anaconda?
-## Und wo sind Unterschiede, Vor- und Nachteile?
-
 In diesem kurzen Beitrag möchte ich auf Anconda (conda) und Pip eingehen, weil man doch recht häufig mit diesen Zweien zu tun hat, falls man mit Python programmiert.
 
 ## Anaconda

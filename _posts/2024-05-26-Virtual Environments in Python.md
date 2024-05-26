@@ -9,7 +9,6 @@ toc: true
 img_path: /assets/images/
 ---
 
-# Virtual Environments in Python
 In diesem Beitrag geht es darum, wie man die in Python (ab Python $3.3$) integrierten virtuellen Umgebungen nutzen kann. 
 
 **Warum überhaupt virtuelle Umgebungen nutzen?**
