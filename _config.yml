@@ -14,9 +14,9 @@ timezone: Europe/Berlin
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
 
-title: Christoph's Tech Notes # the main title
+title: Christoph's Digitale Notizen # the main title
 
-tagline: Meine Persepektive auf Bits und Bytes # it will display as the sub-title
+tagline: Ein Blick in meine digitale Werkzeugkiste # it will display as the sub-title
 
 description: >- # used by seo meta and the atom feed
   Entdecke meine persönliche Sicht auf die Welt der Technologie. Von praktischen Tipps bis hin zu Einblicken in aktuelle Trends - hier teile ich meine Leidenschaft für Bits und Bytes mit dir.
