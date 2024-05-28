@@ -2,7 +2,6 @@
 title: Virtual Environments in Python
 date: 2024-05-26 09:31:00 +/-TTTT
 description: In diesem Beitrag geht es darum, wie man die in Python (ab Python $3.3$) integrierten virtuellen Umgebungen nutzen kann. 
-image: https://www.dataquest.io/wp-content/uploads/2022/01/python-virtual-envs1-1024x576.webp
 categories: [PROGRAMMING]
 tags: [Python]     # TAG names should always be lowercase
 toc: true
