@@ -1,7 +1,6 @@
 ---
 title: Schwache KI, starke KI und Expertensysteme
 date: 2022-12-30 13:00:00 +/-TTTT
-image: https://miro.medium.com/v2/resize:fit:720/format:webp/1*95fM0HUIxRPrJQRJfpCxdQ.png
 categories: [MACHINE LEARNING]
 tags: [ML, DL, AI, Medium]     # TAG names should always be lowercase
 toc: true
