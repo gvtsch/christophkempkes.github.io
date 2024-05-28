@@ -10,8 +10,6 @@ toc: true
 
 In diesem Artikel möchte ich darauf eingehen, was künstliche Intelligenz (KI) ist und wie man künstliche Intelligenz unterteilen kann. Jeder hat sicher eine Vorstellung davon, was künstliche Intelligenz ist und kann. Nicht selten denkt man beispielsweise an den Terminator oder an Sonny aus I, Robot. Wer noch das Glück hatte, mit Star Trek aufzuwachsen, wird vermutlich umgehend an Data denken. Doch das ist auch heute noch Science Fiction und in das Feld starke KI einzuordnen. Dazu später mehr.
 
-![Eine starke künstliche Intelligenz: Data.](https://miro.medium.com/v2/resize:fit:720/format:webp/1*95fM0HUIxRPrJQRJfpCxdQ.png)
-
 Zunächst sollten wir die Frage klären, was künstliche Intelligenz ist. Mein Versuch es einfach zu sagen: Eine künstliche Intelligenz ist der Versuch, einem Computer oder einer Anwendung beizubringen, wie ein Mensch zu lernen und zu denken. So soll dieser Anwendung Intelligenz verliehen werden, welche sie einsetzen kann, um eigenständig Antworten für Probleme jeglicher Art zu finden und selbstständig zu lösen.
 
 ## Schwache KI
