@@ -1,5 +1,5 @@
 ---
-title: Job Scheduling mit Python
+title: Job Scheduling mit Python (First draft)
 date: 2024-12-08 15:00:00 +/-TTTT
 image: preview.png
 categories: [MACHINE LEARNING]
