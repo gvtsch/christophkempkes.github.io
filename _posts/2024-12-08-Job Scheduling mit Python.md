@@ -1,0 +1,346 @@
+---
+title: Job Scheduling mit Python
+date: 2024-12-08 15:00:00 +/-TTTT
+image: preview.png
+categories: [MACHINE LEARNING]
+tags: [ML, DL, AI, Medium]     # TAG names should always be lowercase
+toc: true
+img_path: /assets/images/2024-05-19-Job Scheduling/
+---
+
+Aus gegebenem Anlass habe ich mich mit dem Thema **Job Scheduling** auseinandergesetzt. Hierbei handelt es sich um die Planung und Ausführung von Aufgaben, die zu einem bestimmten Zeitpunkt oder in regelmäßigen Abständen ausgeführt werden sollen. In diesem Beitrag möchte ich dir zeigen, wie ich diese Funktion mit Python realisiert habe. Darüber hinaus verwende ich eine einfache Streamlit-Oberfläche, um die geplanten Aufgaben zu verwalten.
+
+## Warum Job Scheduling?
+
+Ich stand vor der Herausforderung, dass ich gerne eine Warteschlange für ein von mir eingesetztes Python Framework einsetzen wollte. Weil die Ausführung eines einzelnen Jobs teilweise bis zu mehrere Tage dauern kann und von mir durch eine Streamlit-Oberfläche auf einem Server getriggert wird, wollte ich das Ausführen und Abarbeiten der Jobs automatisieren. Dafür gibt es natürlich bereits fertige Pakete. Diese waren mir aber teilweise zu umfangreich oder brauchten z.B. weitere Software-Installationen, die ich auf dem Server nicht durchführen kann/darf.
+
+Nicht zuletzt macht es aber auch Spaß, sich so etwas selbst anzunehmen.
+
+# Der Code
+
+In den folgenden Abschnitten zeige ich den Code, den ich verwendet habe um meine Variante eines Job-Schedulers in Kombination mit Streamlit zu erstellen. Ich versuche auf Details einzugehen und die wichtigsten Punkte zu erklären.
+
+Es wird $4$ Dateien geben:
+
+- `countdown.py`: In dieser Datei versteckt sich der auszuführende Job.
+- `queue_processor.py`: Enthält die Funktionen, die zum Organisieren der Warteschlange benötigt werden.
+- `job_queue.txt`: Hier werden die Jobs samt Status und UUID sowie Parametern gelistet.
+- `queue_test_streamlit.py`: Hier wird die Streamlit-Oberfläche oder -App erstellt.
+
+## Der auszuführende Job `countdown.py`
+
+Kommen wir zunächst zu dem Job, der ausgeführt werden soll. Hierbei handelt es sich um einen simplen Countdown, um den Scheduler schnell und einfach testen zu können. Der Job wird aus dem `queue_processor` heraus aufgerufen. Im Aufruf ist auch die Zeit enthalten, die der Countdown herunter zählen soll.
+
+`countdown.py`
+
+```python
+import sys
+import time
+
+def countdown(seconds):
+    for i in range(seconds, 0, -1):
+        print(f"Countdown: {i} seconds")
+        time.sleep(1)
+
+def main():
+    if len(sys.argv) < 2:
+        print("Error: Missing parameter")
+        sys.exit(1)
+
+    try:
+        seconds = int(sys.argv[1])
+        countdown(seconds)
+    except ValueError:
+        print("Error: Invalid parameter")
+        sys.exit(1)
+
+if __name__ == "__main__":
+    main()
+```
+
+Die Ausgabe kann dann beispielsweise so aussehen:
+
+![Ausgabte in der Kommandozeile](output.png)
+_Output eines einzelnen Jobs_
+
+## Der `queue_processor.py`
+
+In dieser Datei sind alle Funktionen enthalten, die für die Organisation der Jobs benötigt werden. Ich werde im folgenden diese Funktionen einzeln beschreiben.
+
+### Einen Job zur Warteschlange hinzufügen: `add_job_to_queue(job_path, parameter)`
+
+Fügt einen neuen Job zur Warteschlange hinzu, indem eine eindeutige Job-ID (UUID) generiert und in die Datei `job_queue.txt` geschrieben wird. Der Job wird dann zur Warteschlange `job_queue` hinzugefügt (`job_queue.put((job_id, job_path, parameter))`).
+
+```python
+def add_job_to_queue(job_path, parameter):
+    job_id = str(uuid.uuid4())
+    with open(JOB_QUEUE_FILE, "a") as file:
+        file.write(f"{job_id} {job_path} {parameter} PENDING\n")
+    job_queue.put((job_id, job_path, parameter))
+    return job_id
+```
+
+#### Was ist eine `UUID`?
+
+Eine `UUID` (Universally Unique Identifier) ist ein `128`-Bit-Wert, der verwendet wird, um Informationen in verteilten Systemen eindeutig zu identifizieren. Sie besteht aus `32` hexadezimalen Zeichen, die in fünf Gruppen unterteilt sind und durch Bindestriche getrennt werden (z.B. `123e4567-e89b-12d3-a456-426614174000`). UUIDs sind nahezu garantiert einzigartig, da sie auf einer Kombination von Faktoren wie Zeit, Raum (z.B. MAC-Adresse) und zufälligen oder pseudozufälligen Zahlen basieren. Dies macht sie ideal für die eindeutige Identifizierung von Objekten in verteilten Systemen, ohne dass eine zentrale Koordination erforderlich ist.
+ 
+UUIDs gibt es in verschiedenen Versionen:
+ 
+- Version 1: Basierend auf Zeit und MAC-Adresse.
+- Version 2: Basierend auf Zeit, MAC-Adresse und POSIX UID/GID.
+- Version 3: Basierend auf MD5-Hash eines Namespaces und Namens.
+- Version 4: Basierend auf zufälligen Zahlen.
+- Version 5: Basierend auf SHA-1-Hash eines Namespaces und Namens.
+
+Version 4 wird am häufigsten verwendet, da sie zufällig generiert wird und eine hohe Einzigartigkeit bietet.
+
+### Den Status eines Jobs aktualisieren: `update_job_status(job_id, status)`
+
+Aktualisiert den Status eines Jobs in der Datei `job_queue.txt`. Die Funktion verwendet einen Lock, um sicherzustellen, dass die Datei sicher aktualisiert wird. Die Funktion wird durch die 'execute_job()'-Funktion aufgerufen.
+
+```python
+def update_job_status(job_id, status):
+    with lock:
+        with open(JOB_QUEUE_FILE, "r+") as file:
+            lines = file.readlines()
+            file.seek(0)
+            file.truncate()
+            file.writelines(
+                " ".join(parts[:-1] + [status]) + "\n" if parts[0] == job_id else line
+                for line in lines
+                for parts in [line.strip().split()]
+            )
+```
+
+#### Was ist oder macht der `Lock`?
+
+Der Ausdruck `with lock:` verwendet einen Kontextmanager, um den Zugriff auf den gemeinsamen Ressourcenbereich (in diesem Fall die Datei `JOB_QUEUE_FILE`) zu synchronisieren.
+
+Der Kontextmanager mit lock verhindert, dass mehrere Threads gleichzeitig auf die Datei zugreifen, indem er sicherstellt, dass nur ein Thread den Code innerhalb des with lock:-Blocks ausführen kann. Dies wird durch die Methoden __enter__ und __exit__ des Locks erreicht.
+
+- `__enter__` Methode
+  - **Zweck**: Wird aufgerufen, wenn der with-Block betreten wird.
+  - **Aktion**: Erwirbt das Lock, wodurch andere Threads blockiert werden, bis das Lock freigegeben wird.
+  - **Rückgabewert**: Normalerweise das Lock-Objekt selbst, aber in diesem Fall wird es nicht verwendet.
+- `__exit__` Methode
+  - **Zweck**: Wird aufgerufen, wenn der with-Block verlassen wird, unabhängig davon, ob der Block erfolgreich abgeschlossen wurde oder eine Ausnahme aufgetreten ist.
+  - **Aktion**: Gibt das Lock frei, wodurch andere Threads, die auf das Lock warten, fortfahren können.
+  - **Parameter**: Nimmt drei Argumente entgegen: den Typ, den Wert und den Traceback einer Ausnahme, falls eine aufgetreten ist.
+  - **Rückgabewert**: Wenn `True` zurückgegeben wird, wird die Ausnahme unterdrückt; andernfalls wird sie weitergegeben.
+
+### Job ausführen: `execute_job(job_id, job_path, parameter)`
+
+Führt einen Job aus, indem ein neuer Prozess gestartet wird, der das angegebene Skript mit den angegebenen Parametern ausführt. Der Status des Jobs wird vor und nach der Ausführung aktualisiert.
+
+```python
+def execute_job(job_id, job_path, parameter):
+    update_job_status(job_id, "RUNNING")
+    process = subprocess.Popen(
+        ["cmd", "/C", "python", job_path, parameter],
+        creationflags=subprocess.CREATE_NEW_CONSOLE)
+    process.wait()
+    update_job_status(job_id, "COMPLETED")
+```
+
+### `subprocess.Popen(...)`
+
+Die Zeile `subprocess.Popen` startet einen neuen Prozess, der das angegebene Python-Skript (`job_path`) mit dem angegebenen Parameter (`parameter`) ausführt. Hier ist eine detaillierte Erklärung der Argumente:
+
+- `["cmd", "/C", "python", job_path, parameter]`: Dies ist die Befehlszeile, die ausgeführt wird. `cmd /C` startet die Windows-Eingabeaufforderung und führt den folgenden Befehl aus (`python job_path parameter`).
+- `creationflags=subprocess.CREATE_NEW_CONSOLE`: Dieses Flag erstellt eine neue Konsole für den gestarteten Prozess.
+
+Die Zeile `process.wait()` wartet darauf, dass der gestartete Prozess beendet wird, bevor der Code fortfährt. Dies stellt sicher, dass der Job vollständig abgeschlossen ist, bevor der Status auf "COMPLETED" aktualisiert wird.
+
+### remove_job_from_queue(job_id)
+
+Entfernt einen Job aus der Datei `job_queue.txt`, indem alle Zeilen außer derjenigen mit der angegebenen Job-ID beibehalten werden. Die Funktion verwendet einen Lock für die sichere Dateioperation.
+
+```python
+def remove_job_from_queue(job_id):
+    with lock:
+        with open(JOB_QUEUE_FILE, "r+") as file:
+            lines = file.readlines()
+            file.seek(0)
+            file.truncate()
+            for line in lines:
+                parts = line.strip().split()
+                if parts[0] != job_id:
+                    file.write(line)
+```
+
+### get_all_jobs()
+
+Liest alle Jobs aus der Datei `job_queue.txt` und gibt eine Liste von Dictionaries zurück, die die Job-ID, den Job-Pfad, die Parameter und den Status jedes Jobs enthalten.
+
+```python
+def get_all_jobs():
+    jobs = []
+    with open(JOB_QUEUE_FILE, "r") as file:
+        lines = file.readlines()
+        for line in lines:
+            parts = line.strip().split()
+            jobs.append({
+                "Job ID": parts[0],
+                "Job Path": parts[1],
+                "Parameter": parts[2],
+                "Status": parts[3]
+            })
+    return jobs
+```
+
+### process_jobs()
+
+Überwacht die Warteschlange `job_queue` und führt Jobs aus, sobald sie verfügbar sind. Die Funktion läuft in einer Endlosschleife und verwendet einen Lock, um die Warteschlange sicher zu verwalten.
+
+```python
+def process_jobs():
+    while True:
+        with lock:
+            if not job_queue.empty():
+                job_id, job_path, parameter = job_queue.get()
+                job_queue.task_done()
+            else:
+                time.sleep(5)
+                continue
+
+        execute_job(job_id, job_path, parameter)
+```
+
+### Neuen Thread starten und Job ausühren
+
+Startet einen neuen Thread, der die Funktion `process_jobs` ausführt. Der Thread läuft im Hintergrund und verarbeitet kontinuierlich Jobs aus der Warteschlange.
+
+```python
+threading.Thread(target=process_jobs, daemon=True).start()
+```
+
+## Die Warteschlange `job_queue.txt`
+
+In dieser Text-Datei werden die Jobs mit ihren UUIDs, dem Parameter und dem jeweiligen Status gespeichert. Diese Datei wird unter Anderem genutzt, um sich neue Jobs zu holen und erledigte als solches zu markieren.
+
+```text
+6f640ce6-5a3a-4161-8135-fc62bd573897 countdown.py 25 COMPLETED
+694d73e2-0d5f-4090-8518-d241c94aaf6b countdown.py 25 COMPLETED
+62e82184-8b7c-406a-83df-31dd327088b3 countdown.py 5 COMPLETED
+32155a26-4b29-492f-b6ea-5123191aae63 countdown.py 5 COMPLETED
+fd6b28ed-65c4-4a79-b9bb-84cfbc2d0c28 countdown.py 5 COMPLETED
+93550566-238a-4b0c-9cb2-9c42f80123fa countdown.py 5 COMPLETED
+6743c4ce-cbdb-4aff-861c-4b380e825688 countdown.py 5 COMPLETED
+0ac2be3a-1f72-4f11-a2c9-52b7eb2b7d69 countdown.py 5 COMPLETED
+f016a61c-e936-4c88-9c08-89e9f1a51fe2 countdown.py 5 COMPLETED
+6d8f1e81-7964-4791-9901-f2057bc1db4d countdown.py 5 COMPLETED
+82499fd2-233e-48d3-b620-aecf50d78498 countdown.py 5 COMPLETED
+cc057b2d-f471-4b19-b11b-c5be9d2fd8ac countdown.py 10 RUNNING
+e9d4620b-5ba5-4bd4-81e4-4a20e11c88e2 countdown.py 5 PENDING
+```
+
+## Die Streamlit-App `queue_test_streamlit.py`
+
+Die folgende Streamlit-App bietet eine Benutzeroberfläche zur Verwaltung der Job-Warteschlange. Benutzer können Jobs hinzufügen, die Warteschlange aktualisieren und Jobs aus der Warteschlange entfernen. Die App ist wirklich keine Besonderheit, erfüllt aber seinen Job.
+
+```python
+import streamlit as st
+import pandas as pd
+from queue_processor import add_job_to_queue, get_all_jobs, remove_job_from_queue
+
+# Streamlit App
+def main():
+    st.title("Python Job Queue")
+
+    job_path = st.text_input("Job Path", value="countdown.py")
+    parameter = st.text_input("Parameter", value="10")
+
+    if st.button("Add Job"):
+        job_id = add_job_to_queue(job_path, parameter)
+        st.success(f"Job {job_id} added to queue")
+
+    if st.button("Refresh Job Queue"):
+        jobs = get_all_jobs()
+        df = pd.DataFrame(jobs)
+        st.table(df)
+    
+    job_id = st.text_input("Job UUID")
+    if st.button("Remove Job from queue"):
+        remove_job_from_queue(job_id)
+        st.success(f"Job {job_id} removed from queue")
+
+if __name__ == "__main__":
+    main()
+```
+
+Es gibt zwei Eingabefelder:
+
+- In `job_path` definiert man den Pfad zur auszuführenden Datei, wie in diesem Beispiel zu `countdown.py`.
+- `Parameter` ist ein Argument, dass man dem Job übergibt. Ob ein Argument notwendig ist, hängt ganz vom Anwendungsfall und Job ab. In diesem Beispiel übergibt man die Wartezeit (in Sekunden).
+
+Dann folgen zwei Buttons:
+
+- Mit dem `Add Job` Button wird der zuvor genannte Job der Warteschlange hinzugefügt.
+- Der `Refresh Job Queue` Button sorgt für eine Aktualisierung und Darstellung, der in der Warteschlange gelisteten Jobs.
+
+Nun folgt ein weiteres Eingabefeld. In `Job UUID` kann man in dieser App die UUID eines abzubrechenden Jobs eingeben. Bestätigt man die Eingabe durch den `Remove Job from queue` Button, wird der Job aus der Warteschlange gelöscht.
+
+---
+
+# Ausführen des Beispiels
+
+In diesem Abschnitt geht es nun darum, den Job-Scheduler zu testen. Zunächst muss natürlich eine Entwicklungsumgebung mit den entsprechenden Abhängigkeiten eingerichtet werden.
+
+## Installieren der Abhängigkeiten
+
+Eine ausführlichere Beschreibung zu diesem Thema findest du [hier](https://gvtsch.github.io/posts/Virtual-Environments-in-Python/).
+Im folgenden nur stichpunktartig:
+
+- Zunächst in den Ordner mit dem Projekt navigieren (z.B. innerhalb der Kommandozeile)
+- Erstellen der Umgebung mit `python -m venv .venv`
+  
+  ```bash
+  C:\***\Python_Project>python -m venv .venv
+  ```
+
+  So wird die Entwicklungsumgebung im Ordner :file_folder: `.venv` erstellt.
+
+- Mit dem Befehl `activate` in einem der Unterordner aktiviert man die Umgebung und kann z.B. Pakete installieren.
+  
+  ```bash
+  C:\***\Python_Project>venv\Scripts\activate
+  ```
+  
+- Wir benötigen nur $2$ weitere Pakete, `pandas` und `streamlit`.
+
+  ```bash
+  (.venv) C:\***\Python_Project>pip install pandas streamlit
+  ```
+
+  Alle weiteren Pakete sollten mit deiner Python-Installation gekommen sein.
+
+## Starten der Streamlit-App
+
+Wir befinden uns nun bereits im Projekt Ordner und haben alle Pakete installiert und Dateien erstellt und mit Code gefüllt. Als nächstes starte ich die Streamlit-Oberfläche.
+
+```bash
+(.venv) C:\***\Python_Project>streamlit run queue_test_streamlit.py
+```
+
+Wir bekommen folgende Ausgabe:
+
+```bash
+(.venv) C:\***\Python_Project>streamlit run queue_test_streamlit.py
+
+  You can now view your Streamlit app in your browser.
+
+  Local URL: http://localhost:8501
+  Network URL: http://123.123.123:8501
+``` 
+
+Gleichzeitig sollte sich der Browser öffnen und die oben genannte URL, bestehend aus IP oder Localhost und Port, IP aufrufen. Falls das nicht geschieht, kann man die URL auch manuell aufrufen.
+
+![Streamlit App](streamlit.png)
+_Streamlit Oberfläche_
+
+Und hier kann man nun fleißig die einzelnen Funktionen testen.
+
+# Zusammenfassung
+
+In den obigen Abschnitten haben wir einen einfachen Job-Scheduler in Python erstellt. Dieser Scheduler wird mit Hilfe, aber nicht ausschließlich durch, Streamlit befüllt und organisiert. Man kann Jobs hinzufügen, löschen oder sich die Warteschlange anzeigen lassen.
+Die Streamlit-Oberfläche bietet hier eine einfache Möglichkeit mit dem Scheduler zu interagieren. Grundsätzlich kann man die Befehle aber auch anders aufrufen.
