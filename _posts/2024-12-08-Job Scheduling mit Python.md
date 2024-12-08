@@ -5,7 +5,7 @@ image: preview.png
 categories: [MACHINE LEARNING]
 tags: [ML, DL, AI, Medium]     # TAG names should always be lowercase
 toc: true
-img_path: /assets/images/2024-05-19-Job Scheduling/
+img_path: /assets/images/2024-12-08-Job_Scheduling/
 ---
 
 Aus gegebenem Anlass habe ich mich mit dem Thema **Job Scheduling** auseinandergesetzt. Hierbei handelt es sich um die Planung und Ausführung von Aufgaben, die zu einem bestimmten Zeitpunkt oder in regelmäßigen Abständen ausgeführt werden sollen. In diesem Beitrag möchte ich dir zeigen, wie ich diese Funktion mit Python realisiert habe. Darüber hinaus verwende ich eine einfache Streamlit-Oberfläche, um die geplanten Aufgaben zu verwalten.
