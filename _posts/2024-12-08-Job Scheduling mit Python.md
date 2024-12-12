@@ -1,5 +1,5 @@
 ---
-title: Job Scheduling mit Python
+title: Job Queue mit Python
 date: 2024-12-08 15:00:00 +/-TTTT
 image: preview.png
 categories: [MACHINE LEARNING]
@@ -8,9 +8,9 @@ toc: true
 img_path: /assets/images/2024-12-08-Job_Scheduling/
 ---
 
-Aus gegebenem Anlass habe ich mich mit dem Thema **Job Scheduling** auseinandergesetzt. Hierbei handelt es sich um die Planung und Ausführung von Aufgaben, die zu einem bestimmten Zeitpunkt oder in regelmäßigen Abständen ausgeführt werden sollen. In diesem Beitrag möchte ich dir zeigen, wie ich diese Funktion mit Python realisiert habe. Darüber hinaus verwende ich eine einfache Streamlit-Oberfläche, um die geplanten Aufgaben zu verwalten.
+Aus gegebenem Anlass habe ich mich mit dem Thema **Job Scheduling** bzw. im ersten Schritt einer **Job Queue** auseinandergesetzt. Hierbei handelt es sich um die Planung und Ausführung von Aufgaben, die zu einem bestimmten Zeitpunkt oder in regelmäßigen Abständen ausgeführt werden sollen. In diesem Beitrag möchte ich dir zeigen, wie ich diese Funktion mit Python realisiert habe. Im ersten Schrift handelt es sich um eine Warteschlage für eine definierte Anzahl von Threads. Darüber hinaus verwende ich eine einfache Streamlit-Oberfläche, um die geplanten Aufgaben zu verwalten.
 
-## Warum Job Scheduling?
+## Warum Job Scheduling/Queue?
 
 Ich stand vor der Herausforderung, dass ich gerne eine Warteschlange für ein von mir eingesetztes Python Framework einsetzen wollte. Weil die Ausführung eines einzelnen Jobs teilweise bis zu mehrere Tage dauern kann und von mir durch eine Streamlit-Oberfläche auf einem Server getriggert wird, wollte ich das Ausführen und Abarbeiten der Jobs automatisieren. Dafür gibt es natürlich bereits fertige Pakete. Diese waren mir aber teilweise zu umfangreich oder brauchten z.B. weitere Software-Installationen, die ich auf dem Server nicht durchführen kann/darf.
 
