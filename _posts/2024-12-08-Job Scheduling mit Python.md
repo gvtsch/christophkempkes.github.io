@@ -65,6 +65,27 @@ _Output eines einzelnen Jobs_
 
 In dieser Datei sind alle Funktionen enthalten, die für die Organisation der Jobs benötigt werden. Ich werde im folgenden die Funktionen einzeln beschreiben.
 
+### Imports
+
+Zunächst müssen ein paar Imports getätigt werden. Außerdem setzen wir die Anzahl maximaler, synchroner Jobs und ein paar Pfade.
+
+```python
+import threading
+import subprocess
+import uuid
+import os
+
+# Maximale Anzahl gleichzeitiger Jobs
+MAX_CONCURRENT_JOBS = 3
+
+# Globale Variable zur Verfolgung der aktiven Threads
+active_threads = 0
+lock = threading.Lock()
+
+current_path = os.getcwd()
+JOBS_FILE = os.path.join(current_path, "Simple_Example", "job_queue.txt")
+```
+
 ### Einen Job zur Warteschlange hinzufügen: `add_job_to_queue(job_path, parameter)`
 
 Fügt einen neuen Job zur Warteschlange hinzu, indem eine eindeutige Job-ID (UUID) generiert und in die Datei `job_queue.txt` geschrieben wird. Der Job wird dann zur Warteschlange `job_queue` hinzugefügt (`job_queue.put((job_id, job_path, parameter))`).
@@ -72,9 +93,10 @@ Fügt einen neuen Job zur Warteschlange hinzu, indem eine eindeutige Job-ID (UUI
 ```python
 def add_job_to_queue(job_path, parameter):
     job_id = str(uuid.uuid4())
-    with open(JOB_QUEUE_FILE, "a") as file:
-        file.write(f"{job_id} {job_path} {parameter} PENDING\n")
-    job_queue.put((job_id, job_path, parameter))
+    with lock:
+        with open(JOBS_FILE, "a") as file:
+            file.write(f"{job_id} {job_path} {parameter} PENDING\n")
+    process_jobs()
     return job_id
 ```
 
@@ -99,15 +121,13 @@ Aktualisiert den Status eines Jobs in der Datei `job_queue.txt`. Die Funktion ve
 ```python
 def update_job_status(job_id, status):
     with lock:
-        with open(JOB_QUEUE_FILE, "r+") as file:
-            lines = file.readlines()
-            file.seek(0)
-            file.truncate()
-            file.writelines(
-                " ".join(parts[:-1] + [status]) + "\n" if parts[0] == job_id else line
-                for line in lines
-                for parts in [line.strip().split()]
-            )
+        jobs = load_jobs()
+        with open(JOBS_FILE, "w") as file:
+            for job in jobs:
+                if job[0] == job_id:
+                    file.write(" ".join(job[:-1] + (status,)) + "\n")
+                else:
+                    file.write(" ".join(job) + "\n")
 ```
 
 #### Was ist oder macht der `lock`?
@@ -120,12 +140,16 @@ Führt einen Job aus, indem ein neuer Prozess gestartet wird, der das angegebene
 
 ```python
 def execute_job(job_id, job_path, parameter):
+    global active_threads
     update_job_status(job_id, "RUNNING")
     process = subprocess.Popen(
         ["cmd", "/C", "python", job_path, parameter],
         creationflags=subprocess.CREATE_NEW_CONSOLE)
     process.wait()
     update_job_status(job_id, "COMPLETED")
+    with lock:
+        active_threads -= 1
+    process_jobs()
 ```
 
 Die Zeile `subprocess.Popen` startet einen neuen Prozess, der das angegebene Python-Skript (`job_path`, also `countdown.py`) mit dem angegebenen Parameter (`parameter`) ausführt.
@@ -142,7 +166,7 @@ Entfernt einen Job aus der Datei `job_queue.txt`, indem alle Zeilen außer derje
 ```python
 def remove_job_from_queue(job_id):
     with lock:
-        with open(JOB_QUEUE_FILE, "r+") as file:
+        with open(JOBS_FILE, "r+") as file:
             lines = file.readlines()
             file.seek(0)
             file.truncate()
@@ -158,17 +182,17 @@ Liest alle Jobs aus der Datei `job_queue.txt` und gibt eine Liste von Dictionari
 
 ```python
 def get_all_jobs():
+    with lock:
+        return load_jobs()
+```
+
+```python
+def load_jobs():
     jobs = []
-    with open(JOB_QUEUE_FILE, "r") as file:
-        lines = file.readlines()
-        for line in lines:
+    with open(JOBS_FILE, "r") as file:
+        for line in file:
             parts = line.strip().split()
-            jobs.append({
-                "Job ID": parts[0],
-                "Job Path": parts[1],
-                "Parameter": parts[2],
-                "Status": parts[3]
-            })
+            jobs.append((parts[0], parts[1], parts[2], parts[3]))
     return jobs
 ```
 
@@ -178,16 +202,15 @@ def get_all_jobs():
 
 ```python
 def process_jobs():
-    while True:
-        with lock:
-            if not job_queue.empty():
-                job_id, job_path, parameter = job_queue.get()
-                job_queue.task_done()
-            else:
-                time.sleep(5)
-                continue
-
-        execute_job(job_id, job_path, parameter)
+    global active_threads
+    with lock:
+        jobs = load_jobs()
+        for job in jobs:
+            if job[3] == "PENDING" and active_threads < MAX_CONCURRENT_JOBS:
+                job_id, job_path, parameter, _ = job
+                active_threads += 1
+                threading.Thread(target=execute_job, args=(job_id, job_path, parameter)).start()
+                break
 ```
 
 ### Starten des Job-Verarbeitungsthreads
@@ -231,11 +254,10 @@ import streamlit as st
 import pandas as pd
 from queue_processor import add_job_to_queue, get_all_jobs, remove_job_from_queue
 
-# Streamlit App
 def main():
     st.title("Python Job Queue")
 
-    job_path = st.text_input("Job Path", value="countdown.py")
+    job_path = st.text_input("Job Path", value="Simple_Example/countdown.py")
     parameter = st.text_input("Parameter", value="10")
 
     if st.button("Add Job"):
@@ -246,13 +268,14 @@ def main():
         jobs = get_all_jobs()
         df = pd.DataFrame(jobs)
         st.table(df)
-    
+        
     job_id = st.text_input("Job UUID")
     if st.button("Remove Job from queue"):
         remove_job_from_queue(job_id)
         st.success(f"Job {job_id} removed from queue")
 
 if __name__ == "__main__":
+    # Führe die Streamlit-App aus
     main()
 ```
 
